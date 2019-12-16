@@ -12,15 +12,21 @@ namespace MVCApps.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        UniversityContext db;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
+        public HomeController(UniversityContext context) 
+        {
+            db = context;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View(db.Courses.ToList());
         }
 
         public IActionResult Privacy()

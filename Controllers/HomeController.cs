@@ -14,10 +14,10 @@ namespace MVCApps.Controllers
         private readonly ILogger<HomeController> _logger;
         UniversityContext db;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        // public HomeController(ILogger<HomeController> logger)
+        // {
+        //     _logger = logger;
+        // }
 
         public HomeController(UniversityContext context) 
         {

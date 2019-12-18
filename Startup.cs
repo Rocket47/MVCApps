@@ -26,7 +26,7 @@ namespace MVCApps
         public void ConfigureServices(IServiceCollection services)
         {           
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<UniversityContext>(options => options.UseSqlServer("connection"));
+            services.AddDbContext<UniversityContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
         }
 

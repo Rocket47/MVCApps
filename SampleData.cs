@@ -28,7 +28,7 @@ namespace MVCApps
                         name = "Literature",
                         description = "Learn Literature",
                     }                    
-                );
+                );                
                 context.SaveChanges();
             }
         }

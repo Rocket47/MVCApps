@@ -1,9 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/home/android/.dotnet/store/|arch|/|tfm|",
-      "/home/android/.nuget/packages",
-      "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+      "C:\\Users\\rtsenov\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\rtsenov\\.nuget\\packages"
     ]
   }
 }

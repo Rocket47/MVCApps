@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/android/Documents/learn_csharp/MVCApps/MVCApps.csproj": {}
+    "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj": {}
   },
   "projects": {
-    "/home/android/Documents/learn_csharp/MVCApps/MVCApps.csproj": {
+    "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/android/Documents/learn_csharp/MVCApps/MVCApps.csproj",
+        "projectUniqueName": "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj",
         "projectName": "MVCApps",
-        "projectPath": "/home/android/Documents/learn_csharp/MVCApps/MVCApps.csproj",
-        "packagesPath": "/home/android/.nuget/packages/",
-        "outputPath": "/home/android/Documents/learn_csharp/MVCApps/obj/",
+        "projectPath": "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj",
+        "packagesPath": "C:\\Users\\rtsenov\\.nuget\\packages\\",
+        "outputPath": "D:\\foxminded\\learn_csharp\\MVCApps\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "/home/android/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\rtsenov\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -62,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

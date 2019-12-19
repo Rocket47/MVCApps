@@ -34,6 +34,14 @@ namespace MVCApps.Controllers
             return View();
         }
 
+    [HttpGet]
+        public IActionResult showGroups(int? id) 
+        {
+            if (id == null) return RedirectToAction("Index");  
+            ViewBag.GROUP_ID = id;          
+            return View(db.Groups.ToList());
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

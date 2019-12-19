@@ -22,13 +22,12 @@
           @foreach (var course in Model)
             {
             <tr>
-                <td>@course.course_ID</td>
+                <td><a href="~/Home/showGroups/@course.course_ID">@course.course_ID</a></td>
                 <td>@course.name</td>
-                <td>@course.description.</td>
-                <td><a href="~/Home/ShowCourses/@course.name">Купить</a></td>
-            </tr>
-        }      
-        }
+                <td>@course.description.</td>                               
+            </tr>            
+        }              
         </table>
 </body>
 </html>
+

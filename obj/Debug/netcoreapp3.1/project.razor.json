@@ -20521,6 +20521,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\showGroups.cshtml",
+      "TargetPath": "Views\\Home\\showGroups.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"

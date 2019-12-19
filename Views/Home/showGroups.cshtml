@@ -1,0 +1,35 @@
+@model IEnumerable<MVCApps.Models.Group>
+
+@{
+  //  ViewData["Title"] = "Course list";
+  Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>University</title>
+</head>
+<body>
+    <h3>Groups</h3>
+    <table>
+      <tr>
+            <td>GROUP ID</td>
+            <td>COURSE_ID</td>
+            <td>NAME</td>
+            <td></td>
+        </tr>
+          @foreach (var group in Model)
+            {
+                @if (group.course_ID == ViewBag.group_ID)
+                {
+            <tr>                
+                <td>@group.group_ID</td>
+                <td>@group.course_ID</td>
+                <td>@group.name</td>                                               
+            </tr>            
+            }
+        }              
+        </table>
+</body>
+</html>

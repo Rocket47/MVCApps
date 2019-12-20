@@ -20511,6 +20511,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\showStudents.cshtml",
+      "TargetPath": "Views\\Home\\showStudents.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"

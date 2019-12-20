@@ -24,12 +24,32 @@
                 @if (group.course_ID == ViewBag.group_ID)
                 {
             <tr>                
-                <td>@group.group_ID</td>
+                <td><a href="~/Home/showStudents/@group.group_ID">@group.group_ID</a></td>                
                 <td>@group.course_ID</td>
                 <td>@group.name</td>                                               
             </tr>            
             }
         }              
         </table>
+</body>
+<body>
+    <div>       
+        <h3>Изменить название группы</h3>
+        <p>Введите старое и новое название группы:</p>
+        <form method="post">
+            <input type="hidden" />
+            <table>
+                <tr>
+                    <td>Название группы:</td>
+                    <td><input type="text" name="name" /> </td>
+                </tr>
+                <tr>
+                    <td>Новое название:</td>
+                    <td><input type="text" name="name" /></td>
+                </tr>                
+               </table>
+               <td><a href="~/Home/changeNameForGroup/">Нажми меня</a></td>           
+        </form>
+    </div>
 </body>
 </html>

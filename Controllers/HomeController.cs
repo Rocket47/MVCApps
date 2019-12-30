@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MVCApps.Models;
 using Microsoft.EntityFrameworkCore;
-
-
+using Microsoft.Data.SqlClient;
 
 namespace MVCApps.Controllers
 {
@@ -58,17 +57,24 @@ namespace MVCApps.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpPost]
-        public string changeNameForGroup(Group name) {
-            if (name is null)
-            {
-                throw new ArgumentNullException(nameof(name));
-            }
+        [HttpGet]
+        public IActionResult changeNameOfGroup() {                        
+            return View();
+        }
 
-            db.Groups.FromSqlRaw("UPDATE GROUPS" +
-                    "SET GROUPS.NAME = 'Hello World!' WHERE (GROUPS.GROUP_ID & GROUPS.COURSE_ID = 1)");
-            db.SaveChanges();
-            return "База Данных обновлена!!!";
+        [HttpPost]
+        public string changeNameOfGroup(Group group) {    
+            string result = "";
+            try {
+            db.Database.ExecuteSqlRaw("UPDATE GROUPS" +
+                    " SET GROUPS.NAME =" + $"'{group.name}'" + $" WHERE (GROUPS.GROUP_ID = {group.group_ID} & GROUPS.COURSE_ID = {group.course_ID})");
+            result = "Имя группы обновлено";
+            }
+            catch (SqlException  ex) {
+                result = "Ошибка запроса. Имя группы не обновлено";
+            }
+            db.SaveChanges(); 
+            return result;           
         }
     }
 }

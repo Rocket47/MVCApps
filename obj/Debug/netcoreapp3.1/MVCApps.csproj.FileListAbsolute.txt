@@ -111,3 +111,4 @@ D:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\MVCApps.dll
 D:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\MVCApps.pdb
 d:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\Razor\Views\Home\showGroups.cshtml.g.cs
 d:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\Razor\Views\Home\showStudents.cshtml.g.cs
+d:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\Razor\Views\Home\changeNameOfGroup.cshtml.g.cs

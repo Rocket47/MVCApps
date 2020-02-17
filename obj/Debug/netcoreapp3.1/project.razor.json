@@ -20521,6 +20521,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\changeNameOfGroup.cshtml",
+      "TargetPath": "Views\\Home\\changeNameOfGroup.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"

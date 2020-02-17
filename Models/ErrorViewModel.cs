@@ -1,6 +1,6 @@
 using System;
 
-namespace learnCore.Models
+namespace MVCApps.Models
 {
     public class ErrorViewModel
     {

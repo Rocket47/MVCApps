@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using MVCApps.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace MVCApps.Controllers
 {
@@ -63,7 +64,8 @@ namespace MVCApps.Controllers
         }
 
         [HttpPost]
-        public string changeNameOfGroup(Group group) {    
+        public string changeNameOfGroup(Group group) 
+        {    
             string result = "";
             string mGroupId = HttpContext.Request.Query["mGroup"].ToString();           
             string mCourseId = HttpContext.Request.Query["mCourse"].ToString();
@@ -78,5 +80,57 @@ namespace MVCApps.Controllers
             db.SaveChanges(); 
             return result;           
         }
+
+        [HttpGet()]
+        public IActionResult changeNameOfStudent(int? idStudent) {                    
+            return View();
+        }
+
+        [HttpPost]
+        public string changeNameOfStudent(Student student) 
+        {    
+            string result = "";
+            string mStudentId = HttpContext.Request.Query["student_id"].ToString();                      
+            try {
+            db.Database.ExecuteSqlRaw("UPDATE STUDENTS" +
+                    " SET FIRST_NAME =" + $"'{student.first_Name}'" + $" WHERE (STUDENT_ID = {mStudentId})");
+             db.Database.ExecuteSqlRaw("UPDATE STUDENTS" +
+                    " SET LAST_NAME =" + $"'{student.last_Name}'" + $" WHERE (STUDENT_ID = {mStudentId})");
+            result = "Данные студента обновлены";
+            }
+            catch (SqlException  ex) 
+            {
+                result = "Ошибка запроса. Имя студента не обновлено";
+            }
+            db.SaveChanges(); 
+            return result;           
+        }
+
+        [HttpGet()]
+        public string removeGroup(int? idGroup) 
+        { 
+            string result = "";
+            int count = 0;            
+            int groupId = Int32.Parse(HttpContext.Request.Query["groupId"]);
+            var allRows = db.Students.Where(s => s.group_ID == groupId).ToList();
+            count = allRows.Count;
+            if (count == 0) 
+            {
+                result = "Невозможно удалить группу. Число студентов 0.";
+            }
+            else 
+            {   try 
+                {
+                db.Database.ExecuteSqlRaw($"DELETE FROM STUDENTS WHERE STUDENTS.GROUP_ID = {groupId} DELETE FROM GROUPS WHERE GROUPS.GROUP_ID = {groupId}");
+                }
+                catch (SqlException ex) 
+                {
+                    result = "Ошибка запроса. Название группы не обновлено.";
+                }
+                
+            }
+           db.SaveChanges();                                       
+            return result;
+        }    
     }
 }

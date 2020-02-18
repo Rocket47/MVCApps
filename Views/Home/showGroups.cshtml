@@ -27,7 +27,8 @@
                 <td><a href="~/Home/showStudents/@group.group_ID">@group.group_ID</a></td>                
                 <td>@group.course_ID</td>
                 <td style="padding-right: 20px">@group.name</td>         
-                <td><a href="~/Home/changeNameOfGroup/?mGroup=@group.group_ID&mCourse=@group.course_ID">Изменить имя группы</a></td>                                        
+                <td><a href="~/Home/changeNameOfGroup/?mGroup=@group.group_ID&mCourse=@group.course_ID">Изменить имя группы</a></td>
+                <td><a href="~/Home/removeGroup/?groupId=@group.group_ID">Удалить группу</a></td>                                        
             </tr>            
             }
         }                      

@@ -112,3 +112,16 @@ D:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\MVCApps.pdb
 d:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\Razor\Views\Home\showGroups.cshtml.g.cs
 d:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\Razor\Views\Home\showStudents.cshtml.g.cs
 d:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\Razor\Views\Home\changeNameOfGroup.cshtml.g.cs
+d:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\Razor\Views\Home\changeNameOfStudent.cshtml.g.cs
+d:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\Razor\Views\Home\removeGroup.cshtml.g.cs
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+d:\foxminded\learn_csharp\MVCApps\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll

@@ -20501,6 +20501,11 @@
   "RootNamespace": "MVCApps",
   "Documents": [
     {
+      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\changeNameOfStudent.cshtml",
+      "TargetPath": "Views\\Home\\changeNameOfStudent.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -20538,6 +20543,11 @@
     {
       "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\removeGroup.cshtml",
+      "TargetPath": "Views\\Home\\removeGroup.cshtml",
       "FileKind": "mvc"
     },
     {

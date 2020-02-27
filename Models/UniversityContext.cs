@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace MVCApps.Models
 {
@@ -10,7 +11,7 @@ namespace MVCApps.Models
 
         public UniversityContext(DbContextOptions<UniversityContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.EnsureCreated();           
         }
     }
 }

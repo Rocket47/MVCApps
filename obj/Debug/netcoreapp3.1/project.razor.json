@@ -1,5 +1,5 @@
 {
-  "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj",
+  "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\MVCApps.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -20501,62 +20501,62 @@
   "RootNamespace": "MVCApps",
   "Documents": [
     {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\changeNameOfStudent.cshtml",
-      "TargetPath": "Views\\Home\\changeNameOfStudent.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\showStudents.cshtml",
-      "TargetPath": "Views\\Home\\showStudents.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Shared\\Error.cshtml",
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\changeNameOfGroup.cshtml",
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\Home\\changeNameOfGroup.cshtml",
       "TargetPath": "Views\\Home\\changeNameOfGroup.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\showGroups.cshtml",
-      "TargetPath": "Views\\Home\\showGroups.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\removeGroup.cshtml",
-      "TargetPath": "Views\\Home\\removeGroup.cshtml",
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\_ViewStart.cshtml",
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\Home\\showStudents.cshtml",
+      "TargetPath": "Views\\Home\\showStudents.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\foxminded\\learn_csharp\\MVCApps\\Views\\Home\\Index.cshtml",
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\Home\\showGroups.cshtml",
+      "TargetPath": "Views\\Home\\showGroups.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\Home\\changeNameOfStudent.cshtml",
+      "TargetPath": "Views\\Home\\changeNameOfStudent.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\Home\\removeGroup.cshtml",
+      "TargetPath": "Views\\Home\\removeGroup.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "f:\\learn_csharp\\learn_csharp\\MVCApps\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     }

@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj": {}
+    "F:\\learn_csharp\\learn_csharp\\MVCApps\\MVCApps.csproj": {}
   },
   "projects": {
-    "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj": {
+    "F:\\learn_csharp\\learn_csharp\\MVCApps\\MVCApps.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj",
+        "projectUniqueName": "F:\\learn_csharp\\learn_csharp\\MVCApps\\MVCApps.csproj",
         "projectName": "MVCApps",
-        "projectPath": "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj",
-        "packagesPath": "C:\\Users\\rtsenov\\.nuget\\packages\\",
-        "outputPath": "D:\\foxminded\\learn_csharp\\MVCApps\\obj\\",
+        "projectPath": "F:\\learn_csharp\\learn_csharp\\MVCApps\\MVCApps.csproj",
+        "packagesPath": "C:\\Users\\roman\\.nuget\\packages\\",
+        "outputPath": "F:\\learn_csharp\\learn_csharp\\MVCApps\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\rtsenov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\roman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

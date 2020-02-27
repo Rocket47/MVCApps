@@ -29,6 +29,10 @@ namespace MVCApps.Controllers
 
         public IActionResult Index()
         {
+            if (db.Courses.ToList().Count == 0) 
+            {
+                ReseedData();
+            }
             return View(db.Courses.ToList());
         }
 
@@ -132,5 +136,25 @@ namespace MVCApps.Controllers
            db.SaveChanges();                                       
             return result;
         }    
+
+        private void ReseedData() 
+        {            
+            db.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Математика', 'Учим математику')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Физика', 'Учим физику')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Статистика', 'Учим статистику')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Лингвистика', 'Учим лингвистику')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Тайм менеджмент', 'Учим тайм менеджмент')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('1', 'SR1')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('2', 'SR2')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('3', 'SR3')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('4', 'SR4')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('5', 'SR5')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME], [SEX_ID]) VALUES ('1', 'Владимир', 'Добрый', 1)");
+            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME], [SEX_ID]) VALUES ('2', 'Гоша', 'Злой', 1)");
+            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME], [SEX_ID]) VALUES ('3', 'Марина', 'Иванова', 2)");
+            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME], [SEX_ID]) VALUES ('4', 'Зоя', 'Чехова', 2)");
+            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME], [SEX_ID]) VALUES ('5', 'Арина', 'Долгова', 2)");
+            db.SaveChanges();                        
+        }
     }
 }

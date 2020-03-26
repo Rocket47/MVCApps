@@ -63,7 +63,9 @@ namespace MVCApps.Controllers
         }
 
         [HttpGet()]
-        public IActionResult changeNameOfGroup(int? idGroup, int? idCourse) {                    
+        public IActionResult changeNameOfGroup(int? idGroup, int? idCourse) {
+
+            ViewBag.HTMLGroupName = (HttpContext.Request.Query["groupName"]).ToString();
             return View();
         }
 
@@ -72,7 +74,7 @@ namespace MVCApps.Controllers
         {    
             string result = "";
             string mGroupId = HttpContext.Request.Query["mGroup"].ToString();           
-            string mCourseId = HttpContext.Request.Query["mCourse"].ToString();
+            string mCourseId = HttpContext.Request.Query["mCourse"].ToString();            
             try {
             db.Database.ExecuteSqlRaw("UPDATE GROUPS" +
                     " SET GROUPS.NAME =" + $"'{group.name}'" + $" WHERE (GROUPS.GROUP_ID = {mGroupId} AND GROUPS.COURSE_ID = {mCourseId})");
@@ -83,10 +85,12 @@ namespace MVCApps.Controllers
             }
             db.SaveChanges(); 
             return result;           
-        }
+        }              
 
         [HttpGet()]
-        public IActionResult changeNameOfStudent(int? idStudent) {                    
+        public IActionResult changeNameOfStudent(int? idStudent) {
+            @ViewBag.HTMLStudentsFirstName = (HttpContext.Request.Query["studentName"]).ToString();
+            @ViewBag.HTMLStudentsLastName =  (HttpContext.Request.Query["studentLastName"]).ToString();
             return View();
         }
 
@@ -111,11 +115,11 @@ namespace MVCApps.Controllers
         }
 
         [HttpGet()]
-        public string removeGroup(int? idGroup) 
+        public IActionResult removeGroup(int? idGroup) 
         { 
             string result = "";
             int count = 0;            
-            int groupId = Int32.Parse(HttpContext.Request.Query["groupId"]);
+            int groupId = Int32.Parse(HttpContext.Request.Query["groupId"]);            
             var allRows = db.Students.Where(s => s.group_ID == groupId).ToList();
             count = allRows.Count;
             if (count == 0) 
@@ -126,6 +130,7 @@ namespace MVCApps.Controllers
             {   try 
                 {
                 db.Database.ExecuteSqlRaw($"DELETE FROM STUDENTS WHERE STUDENTS.GROUP_ID = {groupId} DELETE FROM GROUPS WHERE GROUPS.GROUP_ID = {groupId}");
+                result = "Группа удалена.";
                 }
                 catch (SqlException ex) 
                 {
@@ -133,9 +138,18 @@ namespace MVCApps.Controllers
                 }
                 
             }
-           db.SaveChanges();                                       
-            return result;
-        }    
+           var groups = db.Groups.Where(x => x.group_ID == groupId).ToList();
+           ViewBag.HTMLStr = result;
+           db.SaveChanges();           
+           return View(); 
+        }
+
+        [HttpPost()]
+        public IActionResult removeGroup()
+        {
+            string groupID = HttpContext.Request.Query["groupId"];
+            return RedirectToAction("showGroups", new { id = groupID });
+        }
 
         private void ReseedData() 
         {            
@@ -149,11 +163,11 @@ namespace MVCApps.Controllers
             db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('3', 'SR3')");
             db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('4', 'SR4')");
             db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('5', 'SR5')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME], [SEX_ID]) VALUES ('1', 'Владимир', 'Добрый', 1)");
-            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME], [SEX_ID]) VALUES ('2', 'Гоша', 'Злой', 1)");
-            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME], [SEX_ID]) VALUES ('3', 'Марина', 'Иванова', 2)");
-            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME], [SEX_ID]) VALUES ('4', 'Зоя', 'Чехова', 2)");
-            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME], [SEX_ID]) VALUES ('5', 'Арина', 'Долгова', 2)");
+            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME]) VALUES ('1', 'Владимир', 'Добрый')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME]) VALUES ('2', 'Гоша', 'Злой')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME]) VALUES ('3', 'Марина', 'Иванова')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME]) VALUES ('4', 'Зоя', 'Чехова')");
+            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME]) VALUES ('5', 'Арина', 'Долгова')");
             db.SaveChanges();                        
         }
     }

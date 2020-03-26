@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\learn_csharp\\learn_csharp\\MVCApps\\MVCApps.csproj": {}
+    "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj": {}
   },
   "projects": {
-    "F:\\learn_csharp\\learn_csharp\\MVCApps\\MVCApps.csproj": {
+    "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\learn_csharp\\learn_csharp\\MVCApps\\MVCApps.csproj",
+        "projectUniqueName": "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj",
         "projectName": "MVCApps",
-        "projectPath": "F:\\learn_csharp\\learn_csharp\\MVCApps\\MVCApps.csproj",
-        "packagesPath": "C:\\Users\\roman\\.nuget\\packages\\",
-        "outputPath": "F:\\learn_csharp\\learn_csharp\\MVCApps\\obj\\",
+        "projectPath": "D:\\foxminded\\learn_csharp\\MVCApps\\MVCApps.csproj",
+        "packagesPath": "C:\\Users\\rtsenov\\.nuget\\packages\\",
+        "outputPath": "D:\\foxminded\\learn_csharp\\MVCApps\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\roman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rtsenov\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

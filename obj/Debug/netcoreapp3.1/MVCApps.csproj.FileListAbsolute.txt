@@ -195,3 +195,5 @@ f:\learn_csharp\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\MVCApps.Views.pdb
 F:\learn_csharp\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\MVCApps.csproj.CopyComplete
 f:\learn_csharp\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\MVCApps.dll
 f:\learn_csharp\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\MVCApps.pdb
+D:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\MVCApps.csproj.CoreCompileInputs.cache
+D:\foxminded\learn_csharp\MVCApps\obj\Debug\netcoreapp3.1\MVCApps.genruntimeconfig.cache

@@ -14,25 +14,14 @@ namespace MVCApps.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly UniversityContext db;
-
-        // public HomeController(ILogger<HomeController> logger)
-        // {
-        //     _logger = logger;
-        // }
-
-        public HomeController(UniversityContext context) 
+        public HomeController(UniversityContext context)
         {
             db = context;
         }
 
         public IActionResult Index()
         {
-            if (db.Courses.ToList().Count == 0) 
-            {
-                ReseedData();
-            }
             return View(db.Courses.ToList());
         }
 
@@ -42,17 +31,23 @@ namespace MVCApps.Controllers
         }
 
         [HttpGet]
-        public IActionResult showGroups(int? id) 
+        public IActionResult showGroups(int? id)
         {
-            if (id == null) return RedirectToAction("Index");  
-            ViewBag.GROUP_ID = id;          
-            return View(db.Groups.ToList());
+            if (id == null) return RedirectToAction("Index");
+            ViewBag.GROUP_ID = id;
+            var mGroups = db.Groups.Where(x => x.course_ID == id).FirstOrDefault();
+            List<Group> listGroups = db.Groups.ToList();
+            if (mGroups == null)
+            {
+                ViewBag.StatusRemoveGroup = 0;
+            }
+            return View(listGroups);
         }
         [HttpGet]
-        public IActionResult showStudents(int? id) 
+        public IActionResult showStudents(int? id)
         {
-            if (id == null) return RedirectToAction("Index");  
-            ViewBag.STUDENT_ID = id;          
+            if (id == null) return RedirectToAction("Index");
+            ViewBag.STUDENT_ID = id;
             return View(db.Students.ToList());
         }
 
@@ -63,85 +58,94 @@ namespace MVCApps.Controllers
         }
 
         [HttpGet()]
-        public IActionResult changeNameOfGroup(int? idGroup, int? idCourse) {
+        public IActionResult changeNameOfGroup(int? idGroup, int? idCourse)
+        {
 
             ViewBag.HTMLGroupName = (HttpContext.Request.Query["groupName"]).ToString();
             return View();
         }
 
         [HttpPost]
-        public string changeNameOfGroup(Group group) 
-        {    
+        public string changeNameOfGroup(Group group)
+        {
             string result = "";
-            string mGroupId = HttpContext.Request.Query["mGroup"].ToString();           
-            string mCourseId = HttpContext.Request.Query["mCourse"].ToString();            
-            try {
-            db.Database.ExecuteSqlRaw("UPDATE GROUPS" +
-                    " SET GROUPS.NAME =" + $"'{group.name}'" + $" WHERE (GROUPS.GROUP_ID = {mGroupId} AND GROUPS.COURSE_ID = {mCourseId})");
-            result = "Имя группы обновлено";
+            string mGroupId = HttpContext.Request.Query["mGroup"].ToString();
+            string mCourseId = HttpContext.Request.Query["mCourse"].ToString();
+            try
+            {
+                var mGroups = db.Groups.Where(x => x.group_ID == Convert.ToInt32(mGroupId) && x.course_ID == Convert.ToInt32(mCourseId)).FirstOrDefault();
+                mGroups.name = group.name;
+                result = "Имя группы обновлено";
             }
-            catch (SqlException  ex) {
+            catch (SqlException ex)
+            {
                 result = "Ошибка запроса. Имя группы не обновлено";
             }
-            db.SaveChanges(); 
-            return result;           
-        }              
+            db.SaveChanges();
+            return result;
+        }
 
         [HttpGet()]
-        public IActionResult changeNameOfStudent(int? idStudent) {
+        public IActionResult changeNameOfStudent(int? idStudent)
+        {
             @ViewBag.HTMLStudentsFirstName = (HttpContext.Request.Query["studentName"]).ToString();
-            @ViewBag.HTMLStudentsLastName =  (HttpContext.Request.Query["studentLastName"]).ToString();
+            @ViewBag.HTMLStudentsLastName = (HttpContext.Request.Query["studentLastName"]).ToString();
             return View();
         }
 
         [HttpPost]
-        public string changeNameOfStudent(Student student) 
-        {    
+        public string changeNameOfStudent(Student student)
+        {
             string result = "";
-            string mStudentId = HttpContext.Request.Query["student_id"].ToString();                      
-            try {
-            db.Database.ExecuteSqlRaw("UPDATE STUDENTS" +
-                    " SET FIRST_NAME =" + $"'{student.first_Name}'" + $" WHERE (STUDENT_ID = {mStudentId})");
-             db.Database.ExecuteSqlRaw("UPDATE STUDENTS" +
-                    " SET LAST_NAME =" + $"'{student.last_Name}'" + $" WHERE (STUDENT_ID = {mStudentId})");
-            result = "Данные студента обновлены";
+            string mStudentId = HttpContext.Request.Query["student_id"].ToString();
+            try
+            {
+                var mStudent = db.Students.Where(x => x.student_ID == student.student_ID).FirstOrDefault();
+                mStudent.first_Name = student.first_Name;
+                mStudent.last_Name = student.last_Name;
+                db.SaveChanges();
+                result = "Данные студента обновлены";
             }
-            catch (SqlException  ex) 
+            catch (SqlException ex)
             {
                 result = "Ошибка запроса. Имя студента не обновлено";
             }
-            db.SaveChanges(); 
-            return result;           
+            db.SaveChanges();
+            return result;
         }
 
         [HttpGet()]
-        public IActionResult removeGroup(int? idGroup) 
-        { 
+        public IActionResult removeGroup(int? idGroup)
+        {
             string result = "";
-            int count = 0;            
-            int groupId = Int32.Parse(HttpContext.Request.Query["groupId"]);            
+            int count = 0;
+            int groupId = Int32.Parse(HttpContext.Request.Query["groupId"]);
             var allRows = db.Students.Where(s => s.group_ID == groupId).ToList();
             count = allRows.Count;
-            if (count == 0) 
+            if (count == 0)
             {
                 result = "Невозможно удалить группу. Число студентов 0.";
             }
-            else 
-            {   try 
+            else
+            {
+                try
                 {
-                db.Database.ExecuteSqlRaw($"DELETE FROM STUDENTS WHERE STUDENTS.GROUP_ID = {groupId} DELETE FROM GROUPS WHERE GROUPS.GROUP_ID = {groupId}");
-                result = "Группа удалена.";
+                    var RemoveStudent = db.Students.Where(x => x.group_ID == groupId).ToList();
+                    var RemoveGroup = db.Groups.Where(x => x.group_ID == groupId);
+                    db.Students.RemoveRange(RemoveStudent);
+                    db.Groups.RemoveRange(RemoveGroup);
+                    result = "Группа удалена.";
                 }
-                catch (SqlException ex) 
+                catch (SqlException ex)
                 {
                     result = "Ошибка запроса. Название группы не обновлено.";
                 }
-                
+
             }
-           var groups = db.Groups.Where(x => x.group_ID == groupId).ToList();
-           ViewBag.HTMLStr = result;
-           db.SaveChanges();           
-           return View(); 
+            var groups = db.Groups.Where(x => x.group_ID == groupId).ToList();
+            ViewBag.HTMLStr = result;
+            db.SaveChanges();
+            return View();
         }
 
         [HttpPost()]
@@ -149,26 +153,6 @@ namespace MVCApps.Controllers
         {
             string groupID = HttpContext.Request.Query["groupId"];
             return RedirectToAction("showGroups", new { id = groupID });
-        }
-
-        private void ReseedData() 
-        {            
-            db.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Математика', 'Учим математику')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Физика', 'Учим физику')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Статистика', 'Учим статистику')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Лингвистика', 'Учим лингвистику')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Тайм менеджмент', 'Учим тайм менеджмент')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('1', 'SR1')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('2', 'SR2')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('3', 'SR3')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('4', 'SR4')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [GROUPS] ([COURSE_ID], [NAME]) VALUES ('5', 'SR5')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME]) VALUES ('1', 'Владимир', 'Добрый')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME]) VALUES ('2', 'Гоша', 'Злой')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME]) VALUES ('3', 'Марина', 'Иванова')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME]) VALUES ('4', 'Зоя', 'Чехова')");
-            db.Database.ExecuteSqlRaw("INSERT INTO [STUDENTS] ([GROUP_ID], [FIRST_NAME], [LAST_NAME]) VALUES ('5', 'Арина', 'Долгова')");
-            db.SaveChanges();                        
         }
     }
 }

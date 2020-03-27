@@ -19,6 +19,10 @@
                 <td>NAME</td>
                 <td></td>
             </tr>
+            @if (ViewBag.StatusRemoveGroup == 0)
+            {
+                <h><font color="red">ГРУППА УДАЛЕНА!</font></h>
+            }
             @foreach (var group in Model)
             {
                 @if (group.course_ID == ViewBag.group_ID)
@@ -30,7 +34,6 @@
                         <td><a href="~/Home/changeNameOfGroup/?groupName=@group.name&mGroup=@group.group_ID&mCourse=@group.course_ID">Изменить имя группы</a></td>
                         <td><a href="~/Home/removeGroup/?groupId=@group.group_ID">Удалить группу</a></td>
                     </tr>
-
                 }
             }
         </table>

@@ -35,20 +35,24 @@ namespace MVCApps.Controllers
         {
             if (id == null) return RedirectToAction("Index");
             ViewBag.GROUP_ID = id;
-            var mGroups = db.Groups.Where(x => x.course_ID == id).FirstOrDefault();
-            List<Group> listGroups = db.Groups.ToList();
+            var mGroups = db.Groups
+                .Include(x => x.Course)
+                .Where(x => x.group_ID == id);            
             if (mGroups == null)
             {
                 ViewBag.StatusRemoveGroup = 0;
             }
-            return View(listGroups);
+            return View(mGroups);
         }
         [HttpGet]
         public IActionResult showStudents(int? id)
         {
             if (id == null) return RedirectToAction("Index");
             ViewBag.STUDENT_ID = id;
-            return View(db.Students.ToList());
+            var mStudents = db.Students
+                .Include(x => x.Group)
+                .Where(x => x.Group.group_ID == id);
+            return View(mStudents);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -60,7 +64,6 @@ namespace MVCApps.Controllers
         [HttpGet()]
         public IActionResult changeNameOfGroup(int? idGroup, int? idCourse)
         {
-
             ViewBag.HTMLGroupName = (HttpContext.Request.Query["groupName"]).ToString();
             return View();
         }
@@ -73,7 +76,9 @@ namespace MVCApps.Controllers
             string mCourseId = HttpContext.Request.Query["mCourse"].ToString();
             try
             {
-                var mGroups = db.Groups.Where(x => x.group_ID == Convert.ToInt32(mGroupId) && x.course_ID == Convert.ToInt32(mCourseId)).FirstOrDefault();
+                var mGroups = db.Groups
+                    .Include(x => x.Course)
+                    .Where(x => x.group_ID == Convert.ToInt32(mGroupId) && x.Course.course_ID == Convert.ToInt32(mCourseId)).FirstOrDefault();
                 mGroups.name = group.name;
                 result = "Имя группы обновлено";
             }
@@ -100,7 +105,9 @@ namespace MVCApps.Controllers
             string mStudentId = HttpContext.Request.Query["student_id"].ToString();
             try
             {
-                var mStudent = db.Students.Where(x => x.student_ID == student.student_ID).FirstOrDefault();
+                var mStudent = db.Students
+                    .Where(x => x.student_ID == student.student_ID)
+                    .FirstOrDefault();
                 mStudent.first_Name = student.first_Name;
                 mStudent.last_Name = student.last_Name;
                 db.SaveChanges();
@@ -120,7 +127,9 @@ namespace MVCApps.Controllers
             string result = "";
             int count = 0;
             int groupId = Int32.Parse(HttpContext.Request.Query["groupId"]);
-            var allRows = db.Students.Where(s => s.group_ID == groupId).ToList();
+            var allRows = db.Students
+                .Where(s => s.Group.group_ID == groupId)
+                .ToList();
             count = allRows.Count;
             if (count == 0)
             {
@@ -130,7 +139,7 @@ namespace MVCApps.Controllers
             {
                 try
                 {
-                    var RemoveStudent = db.Students.Where(x => x.group_ID == groupId).ToList();
+                    var RemoveStudent = db.Students.Where(x => x.Group.group_ID == groupId).ToList();
                     var RemoveGroup = db.Groups.Where(x => x.group_ID == groupId);
                     db.Students.RemoveRange(RemoveStudent);
                     db.Groups.RemoveRange(RemoveGroup);

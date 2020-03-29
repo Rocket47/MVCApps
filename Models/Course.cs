@@ -8,7 +8,7 @@ namespace MVCApps.Models
         [Key]
         public int course_ID {get; set;}
         public string name {get; set;}
-        public string description {get; set;}
+        public string description {get; set;}        
     }
 }
 

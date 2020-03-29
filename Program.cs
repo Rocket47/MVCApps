@@ -22,7 +22,7 @@ namespace MVCApps
                 var Services = scope.ServiceProvider;
                 try
                 {
-                    var context = Services.GetRequiredService<UniversityContext>();
+                    var context = Services.GetRequiredService<UniversityContext>();                   
                     if (context.Courses.ToList().Count == 0)
                     {
                         context.Database.ExecuteSqlRaw("INSERT INTO [COURSES] ([NAME], [DESCRIPTION]) VALUES ('Математика', 'Учим математику')");

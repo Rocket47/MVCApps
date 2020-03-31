@@ -38,7 +38,7 @@ namespace MVCApps.Controllers
             var mGroups = db.Groups
                 .Include(x => x.Course)
                 .Where(x => x.group_ID == id);            
-            if (mGroups == null)
+            if (mGroups.Count() == 0)
             {
                 ViewBag.StatusRemoveGroup = 0;
             }
@@ -69,25 +69,48 @@ namespace MVCApps.Controllers
         }
 
         [HttpPost]
-        public string changeNameOfGroup(Group group)
+        public IActionResult changeNameOfGroup(Group group)
         {
             string result = "";
             string mGroupId = HttpContext.Request.Query["mGroup"].ToString();
-            string mCourseId = HttpContext.Request.Query["mCourse"].ToString();
+            string mCourseId = HttpContext.Request.Query["mCourse"].ToString();           
             try
             {
                 var mGroups = db.Groups
                     .Include(x => x.Course)
-                    .Where(x => x.group_ID == Convert.ToInt32(mGroupId) && x.Course.course_ID == Convert.ToInt32(mCourseId)).FirstOrDefault();
+                    .Where(x => x.group_ID == Convert.ToInt32(mGroupId) && x.Course.name == mCourseId).FirstOrDefault();
                 mGroups.name = group.name;
-                result = "Имя группы обновлено";
+                result = "true";                
             }
             catch (SqlException ex)
             {
-                result = "Ошибка запроса. Имя группы не обновлено";
+                result = "false";
             }
-            db.SaveChanges();
-            return result;
+            db.SaveChanges();            
+            return RedirectToAction("ResultChangeNameGroup", new { status = result, groupID = mGroupId });
+        }
+
+        [HttpGet()]
+        public IActionResult ResultChangeNameGroup()
+        {
+            string GetStatus = HttpContext.Request.Query["status"].ToString();
+            if (GetStatus.Equals("true"))
+            {
+                ViewBag.HTMLResultChangeNameGroup = "Название группы успешно изменено";
+            }
+            else
+            {
+                ViewBag.HTMLResultChangeNameGroup = "Ошибка изменения названия группы";
+            }
+            
+            return View();
+        }
+
+        [HttpPost()]
+        public IActionResult ResultChangeNameGroup(int? id)
+        {
+            string GetGroupId = HttpContext.Request.Query["groupID"].ToString();
+            return RedirectToAction("showGroups", new { id = GetGroupId });
         }
 
         [HttpGet()]

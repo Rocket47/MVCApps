@@ -15,6 +15,7 @@ namespace MVCApps.Controllers
     public class HomeController : Controller
     {
         private readonly UniversityContext db;
+        private readonly ILogger _logger;
         public HomeController(UniversityContext context)
         {
             db = context;
@@ -79,6 +80,11 @@ namespace MVCApps.Controllers
                 var mGroups = db.Groups
                     .Include(x => x.Course)
                     .Where(x => x.group_ID == Convert.ToInt32(mGroupId) && x.Course.name == mCourseId).FirstOrDefault();
+                if (mGroups == null)
+                {
+                    _logger.LogError("Some error occured");
+                    return View();
+                }
                 mGroups.name = group.name;
                 result = "true";                
             }
@@ -121,8 +127,10 @@ namespace MVCApps.Controllers
             return View();
         }
 
+
+
         [HttpPost]
-        public string changeNameOfStudent(Student student)
+        public IActionResult changeNameOfStudent(Student student)
         {
             string result = "";
             string mStudentId = HttpContext.Request.Query["student_id"].ToString();
@@ -131,17 +139,45 @@ namespace MVCApps.Controllers
                 var mStudent = db.Students
                     .Where(x => x.student_ID == student.student_ID)
                     .FirstOrDefault();
+                if (mStudent == null)
+                {
+                    _logger.LogError("Some error occured");
+                    return View();
+                }
                 mStudent.first_Name = student.first_Name;
                 mStudent.last_Name = student.last_Name;
                 db.SaveChanges();
-                result = "Данные студента обновлены";
+                result = "true";
             }
             catch (SqlException ex)
             {
-                result = "Ошибка запроса. Имя студента не обновлено";
+                result = "false";
             }
             db.SaveChanges();
-            return result;
+            return  RedirectToAction("ResultChangeNameStudent", new { status = result, studentID = mStudentId }); ;
+        }
+
+        [HttpGet()]
+        public IActionResult ResultChangeNameStudent()
+        {
+            string GetStatus = HttpContext.Request.Query["status"].ToString();
+            if (GetStatus.Equals("true"))
+            {
+                ViewBag.HTMLResultChangeNameGroup = "Имя студента успешно изменено";
+            }
+            else
+            {
+                ViewBag.HTMLResultChangeNameGroup = "Ошибка. Имя не изменено.";
+            }
+
+            return View();
+        }
+
+        [HttpPost()]
+        public IActionResult ResultChangeNameStudent(int? id)
+        {
+            string GetStudentId = HttpContext.Request.Query["studentID"].ToString();
+            return RedirectToAction("showStudents", new { id = GetStudentId });
         }
 
         [HttpGet()]
@@ -184,7 +220,7 @@ namespace MVCApps.Controllers
         public IActionResult removeGroup()
         {
             string groupID = HttpContext.Request.Query["groupId"];
-            return RedirectToAction("showGroups", new { id = groupID });
+            return RedirectToAction("showStudents");
         }
     }
 }

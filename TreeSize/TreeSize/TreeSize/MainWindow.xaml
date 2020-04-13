@@ -1,0 +1,17 @@
+﻿<Window x:Class="TreeSize.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TreeSize"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="0,0,672,375">
+        <Button Margin="0,30,0,-55" Content="Analyze Disc"/>
+        <TreeView x:Name="TreeViewMain" Margin="0,141,-675,-379">
+            <TreeViewItem x:Name="TreeViewItem" Header="Disc:" IsExpanded="True" Height="264" Width="785">
+            </TreeViewItem>
+        </TreeView>
+        
+    </Grid>
+</Window>

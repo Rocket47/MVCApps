@@ -16,31 +16,28 @@ namespace TreeSize
 {
     public partial class Form1 : Form
     {
-        Thread fillListViewThread;
         public Form1()
         {
-            InitializeComponent();                      
-            PopulateTreeView();                  
+            InitializeComponent();
+            PopulateTreeView();
             this.treeView1.NodeMouseClick +=
             new TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
-        }       
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
         }
 
         private void PopulateTreeView()
         {
             TreeNode rootNode;
-
-            DirectoryInfo info = new DirectoryInfo(@"F:\");
-            if (info.Exists)
+            DriveInfo[] allDrives = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in allDrives)
             {
-                rootNode = new TreeNode(info.Name);
-                rootNode.Tag = info;
-                GetDirectories(info.GetDirectories(), rootNode);
-                treeView1.Nodes.Add(rootNode);
+                DirectoryInfo info = new DirectoryInfo(@driveInfo.Name);
+                if (info.Exists)
+                {
+                    rootNode = new TreeNode(info.Name);
+                    rootNode.Tag = info;
+                    GetDirectories(info.GetDirectories(), rootNode);
+                    treeView1.Nodes.Add(rootNode);
+                }
             }
         }
 
@@ -48,7 +45,6 @@ namespace TreeSize
             TreeNode nodeToAddTo)
         {
             TreeNode aNode;
-            DirectoryInfo[] subSubDirs;
             foreach (DirectoryInfo subDir in subDirs)
             {
                 try
@@ -61,21 +57,20 @@ namespace TreeSize
                 }
                 aNode = new TreeNode(subDir.Name, 0, 0);
                 aNode.Tag = subDir;
-                aNode.ImageKey = "folder";
                 nodeToAddTo.Nodes.Add(aNode);
             }
         }
 
         void treeView1_NodeMouseClick(object sender,
     TreeNodeMouseClickEventArgs e)
-        {           
+        {
             TreeNode newSelected = e.Node;
             listview.Items.Clear();
             DirectoryInfo nodeDirInfo = (DirectoryInfo)newSelected.Tag;
             ListViewItem.ListViewSubItem[] subItems = new ListViewItem.ListViewSubItem[] { };
             ListViewItem item = null;
             FillDirectory(nodeDirInfo, item, subItems);
-            listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            FillFiles(nodeDirInfo, item, subItems);
         }
 
         public static long DirSize(DirectoryInfo d)
@@ -102,7 +97,7 @@ namespace TreeSize
             {
                 return 0;
             }
-          
+
         }
 
         public void FillDirectory(DirectoryInfo nodeDirInfo, ListViewItem item, ListViewItem.ListViewSubItem[] subItems)
@@ -130,25 +125,24 @@ namespace TreeSize
             }
         }
 
-        public void SetInfoDirectory(DirectoryInfo dir, ListViewItem item, ListViewItem.ListViewSubItem[] subItems) 
+        public void SetInfoDirectory(DirectoryInfo dir, ListViewItem item, ListViewItem.ListViewSubItem[] subItems)
         {
             item = new ListViewItem(dir.Name, 0);
-           
-                subItems = new ListViewItem.ListViewSubItem[]
-               {new ListViewItem.ListViewSubItem(item, "Directory"),
+
+            subItems = new ListViewItem.ListViewSubItem[]
+           { new ListViewItem.ListViewSubItem(item, "Directory"),
              new ListViewItem.ListViewSubItem(item,
-                dir.LastAccessTime.ToShortDateString()),
-              new ListViewItem.ListViewSubItem(item, DirSize(dir).ToString())};
-                item.SubItems.AddRange(subItems);
-                listview.Items.Add(item);                       
+                 dir.LastAccessTime.ToShortDateString()),
+             new ListViewItem.ListViewSubItem(item, DirSize(dir).ToString()),
+             new ListViewItem.ListViewSubItem(item, dir.GetDirectories().Length.ToString())};
+            item.SubItems.AddRange(subItems);
+            listview.Items.Add(item);
         }
 
         public void FillFiles(DirectoryInfo nodeDirInfo, ListViewItem item, ListViewItem.ListViewSubItem[] subItems)
         {
             foreach (FileInfo file in nodeDirInfo.GetFiles())
-            {
-                if (Path.GetExtension(file.FullName) != string.Empty)
-                {
+            {               
                     item = new ListViewItem(file.Name, 1);
                     subItems = new ListViewItem.ListViewSubItem[]
                         { new ListViewItem.ListViewSubItem(item, "File"),
@@ -157,13 +151,7 @@ namespace TreeSize
                 file.Length.ToString()) };
 
                     item.SubItems.AddRange(subItems);
-                    listview.Items.Add(item);
-                }
-                else
-                {
-                    FillDirectory(nodeDirInfo, item, subItems);
-                }
-
+                    listview.Items.Add(item);                
             }
         }
     }

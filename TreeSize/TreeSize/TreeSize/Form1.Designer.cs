@@ -35,6 +35,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_count = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,7 +73,8 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.column_count});
             this.listview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listview.HideSelection = false;
             this.listview.Location = new System.Drawing.Point(0, 0);
@@ -85,20 +87,26 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 119;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Type";
-            this.columnHeader2.Width = 69;
+            this.columnHeader2.Width = 104;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Last Modified";
-            this.columnHeader3.Width = 114;
+            this.columnHeader3.Width = 120;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Size";
+            this.columnHeader4.Width = 83;
+            // 
+            // column_count
+            // 
+            this.column_count.Text = "Count";
             // 
             // Form1
             // 
@@ -125,6 +133,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader column_count;
     }
 }
 

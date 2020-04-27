@@ -69,8 +69,8 @@ namespace TreeSize
             DirectoryInfo nodeDirInfo = (DirectoryInfo)newSelected.Tag;
             ListViewItem.ListViewSubItem[] subItems = new ListViewItem.ListViewSubItem[] { };
             ListViewItem item = null;
-            FillDirectory(nodeDirInfo, item, subItems);
-            FillFiles(nodeDirInfo, item, subItems);
+            FillDirectory(nodeDirInfo);
+            FillFiles(nodeDirInfo);
         }
 
         public static long DirSize(DirectoryInfo d)
@@ -100,7 +100,7 @@ namespace TreeSize
 
         }
 
-        public void FillDirectory(DirectoryInfo nodeDirInfo, ListViewItem item, ListViewItem.ListViewSubItem[] subItems)
+        public void FillDirectory(DirectoryInfo nodeDirInfo)
         {
             foreach (DirectoryInfo dir in nodeDirInfo.GetDirectories())
             {
@@ -109,7 +109,7 @@ namespace TreeSize
                     FileInfo[] fis = dir.GetFiles();
                     new Thread(() =>
                         {
-                            Action action = () => SetInfoDirectory(dir, item, subItems);
+                            Action action = () => SetInfoDirectory(dir);
 
                             if (InvokeRequired)
                                 Invoke(action);
@@ -125,33 +125,48 @@ namespace TreeSize
             }
         }
 
-        public void SetInfoDirectory(DirectoryInfo dir, ListViewItem item, ListViewItem.ListViewSubItem[] subItems)
+        public void SetInfoDirectory(DirectoryInfo dir)
         {
-            item = new ListViewItem(dir.Name, 0);
-
-            subItems = new ListViewItem.ListViewSubItem[]
+            ListViewItem item = new ListViewItem(dir.Name, 0);
+            ListViewItem.ListViewSubItem[] subItems = new ListViewItem.ListViewSubItem[]
            { new ListViewItem.ListViewSubItem(item, "Directory"),
              new ListViewItem.ListViewSubItem(item,
                  dir.LastAccessTime.ToShortDateString()),
              new ListViewItem.ListViewSubItem(item, DirSize(dir).ToString()),
-             new ListViewItem.ListViewSubItem(item, dir.GetDirectories().Length.ToString())};
+             new ListViewItem.ListViewSubItem(item, GetCountDirectories(dir).ToString())};
             item.SubItems.AddRange(subItems);
             listview.Items.Add(item);
         }
 
-        public void FillFiles(DirectoryInfo nodeDirInfo, ListViewItem item, ListViewItem.ListViewSubItem[] subItems)
+        public int GetCountDirectories(DirectoryInfo dir)
+        {
+            int countDirectories;
+            try
+            {
+                countDirectories = Directory.EnumerateDirectories(dir.FullName, "*",
+                     SearchOption.AllDirectories).Count();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return 0;
+            }
+
+            return countDirectories;
+        }
+
+        public void FillFiles(DirectoryInfo nodeDirInfo)
         {
             foreach (FileInfo file in nodeDirInfo.GetFiles())
-            {               
-                    item = new ListViewItem(file.Name, 1);
-                    subItems = new ListViewItem.ListViewSubItem[]
-                        { new ListViewItem.ListViewSubItem(item, "File"),
+            {
+                ListViewItem item = new ListViewItem(file.Name, 1);
+                ListViewItem.ListViewSubItem[] subItems = new ListViewItem.ListViewSubItem[]
+                    { new ListViewItem.ListViewSubItem(item, "File"),
              new ListViewItem.ListViewSubItem(item,
                 file.LastAccessTime.ToShortDateString()), new ListViewItem.ListViewSubItem(item,
                 file.Length.ToString()) };
 
-                    item.SubItems.AddRange(subItems);
-                    listview.Items.Add(item);                
+                item.SubItems.AddRange(subItems);
+                listview.Items.Add(item);
             }
         }
     }

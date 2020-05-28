@@ -17,10 +17,17 @@ namespace Round_Robin
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSettings_Click(object sender, EventArgs e)
         {
             SettingsForm settingsForm = new SettingsForm();
             settingsForm.Show();
         }
+
+        private void buttonNew_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

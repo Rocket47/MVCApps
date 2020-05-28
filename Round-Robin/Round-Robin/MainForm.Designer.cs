@@ -45,7 +45,7 @@
             this.process_work = new System.Windows.Forms.Label();
             this.buttonPause = new System.Windows.Forms.Button();
             this.buttonNew = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -191,23 +191,24 @@
             this.buttonNew.TabIndex = 7;
             this.buttonNew.Text = "NEW";
             this.buttonNew.UseVisualStyleBackColor = true;
+            this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
             // 
-            // button1
+            // buttonSettings
             // 
-            this.button1.Location = new System.Drawing.Point(439, 469);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "SETTINGS";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonSettings.Location = new System.Drawing.Point(439, 469);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(75, 23);
+            this.buttonSettings.TabIndex = 8;
+            this.buttonSettings.Text = "SETTINGS";
+            this.buttonSettings.UseVisualStyleBackColor = true;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1108, 524);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonNew);
             this.Controls.Add(this.buttonPause);
             this.Controls.Add(this.process_work);
@@ -243,7 +244,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSettings;
     }
 }
 

@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.responseTimeInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.maxPerformanceInput = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.minPerformanceInput = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.maxCountWorkerInput = new System.Windows.Forms.TextBox();
+            this.minCountWorkerInput = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.maxComplexityInput = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.minComplexityInput = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.maxCountTasksInput = new System.Windows.Forms.TextBox();
+            this.minCountTasksInput = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
+            this.button_Save = new System.Windows.Forms.Button();
+            this.buttonDefault = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -60,7 +60,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.responseTimeInput);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -68,6 +68,22 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Timer";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(152, 25);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(47, 13);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "seconds";
+            // 
+            // responseTimeInput
+            // 
+            this.responseTimeInput.Location = new System.Drawing.Point(92, 22);
+            this.responseTimeInput.Name = "responseTimeInput";
+            this.responseTimeInput.Size = new System.Drawing.Size(54, 20);
+            this.responseTimeInput.TabIndex = 4;
             // 
             // label1
             // 
@@ -80,12 +96,12 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.maxPerformanceInput);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.minPerformanceInput);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.maxCountWorkerInput);
+            this.groupBox2.Controls.Add(this.minCountWorkerInput);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(12, 83);
@@ -94,6 +110,29 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Performers";
+            // 
+            // maxPerformanceInput
+            // 
+            this.maxPerformanceInput.Location = new System.Drawing.Point(256, 42);
+            this.maxPerformanceInput.Name = "maxPerformanceInput";
+            this.maxPerformanceInput.Size = new System.Drawing.Size(54, 20);
+            this.maxPerformanceInput.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(152, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(98, 14);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Max performance:";
+            // 
+            // minPerformanceInput
+            // 
+            this.minPerformanceInput.Location = new System.Drawing.Point(92, 42);
+            this.minPerformanceInput.Name = "minPerformanceInput";
+            this.minPerformanceInput.Size = new System.Drawing.Size(54, 20);
+            this.minPerformanceInput.TabIndex = 7;
             // 
             // label4
             // 
@@ -104,19 +143,19 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Min performance:";
             // 
-            // textBox4
+            // maxCountWorkerInput
             // 
-            this.textBox4.Location = new System.Drawing.Point(256, 18);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(54, 20);
-            this.textBox4.TabIndex = 5;
+            this.maxCountWorkerInput.Location = new System.Drawing.Point(256, 18);
+            this.maxCountWorkerInput.Name = "maxCountWorkerInput";
+            this.maxCountWorkerInput.Size = new System.Drawing.Size(54, 20);
+            this.maxCountWorkerInput.TabIndex = 5;
             // 
-            // textBox2
+            // minCountWorkerInput
             // 
-            this.textBox2.Location = new System.Drawing.Point(92, 18);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(54, 20);
-            this.textBox2.TabIndex = 3;
+            this.minCountWorkerInput.Location = new System.Drawing.Point(92, 18);
+            this.minCountWorkerInput.Name = "minCountWorkerInput";
+            this.minCountWorkerInput.Size = new System.Drawing.Size(54, 20);
+            this.minCountWorkerInput.TabIndex = 3;
             // 
             // label3
             // 
@@ -136,44 +175,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Min count:";
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(92, 42);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(54, 20);
-            this.textBox3.TabIndex = 7;
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(152, 45);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 14);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Max performance:";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(256, 42);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(54, 20);
-            this.textBox5.TabIndex = 9;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(92, 22);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(54, 20);
-            this.textBox6.TabIndex = 4;
-            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.maxComplexityInput);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.textBox7);
+            this.groupBox3.Controls.Add(this.minComplexityInput);
             this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.textBox8);
-            this.groupBox3.Controls.Add(this.textBox9);
+            this.groupBox3.Controls.Add(this.maxCountTasksInput);
+            this.groupBox3.Controls.Add(this.minCountTasksInput);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Location = new System.Drawing.Point(12, 177);
@@ -183,12 +192,12 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tasks";
             // 
-            // textBox1
+            // maxComplexityInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(256, 45);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(54, 20);
-            this.textBox1.TabIndex = 9;
+            this.maxComplexityInput.Location = new System.Drawing.Point(256, 45);
+            this.maxComplexityInput.Name = "maxComplexityInput";
+            this.maxComplexityInput.Size = new System.Drawing.Size(54, 20);
+            this.maxComplexityInput.TabIndex = 9;
             // 
             // label6
             // 
@@ -199,12 +208,12 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Max complexity:";
             // 
-            // textBox7
+            // minComplexityInput
             // 
-            this.textBox7.Location = new System.Drawing.Point(92, 45);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(54, 20);
-            this.textBox7.TabIndex = 7;
+            this.minComplexityInput.Location = new System.Drawing.Point(92, 45);
+            this.minComplexityInput.Name = "minComplexityInput";
+            this.minComplexityInput.Size = new System.Drawing.Size(54, 20);
+            this.minComplexityInput.TabIndex = 7;
             // 
             // label7
             // 
@@ -215,19 +224,19 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Min complexity:";
             // 
-            // textBox8
+            // maxCountTasksInput
             // 
-            this.textBox8.Location = new System.Drawing.Point(256, 18);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(54, 20);
-            this.textBox8.TabIndex = 5;
+            this.maxCountTasksInput.Location = new System.Drawing.Point(256, 18);
+            this.maxCountTasksInput.Name = "maxCountTasksInput";
+            this.maxCountTasksInput.Size = new System.Drawing.Size(54, 20);
+            this.maxCountTasksInput.TabIndex = 5;
             // 
-            // textBox9
+            // minCountTasksInput
             // 
-            this.textBox9.Location = new System.Drawing.Point(92, 18);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(54, 20);
-            this.textBox9.TabIndex = 3;
+            this.minCountTasksInput.Location = new System.Drawing.Point(92, 18);
+            this.minCountTasksInput.Name = "minCountTasksInput";
+            this.minCountTasksInput.Size = new System.Drawing.Size(54, 20);
+            this.minCountTasksInput.TabIndex = 3;
             // 
             // label8
             // 
@@ -247,46 +256,40 @@
             this.label9.TabIndex = 1;
             this.label9.Text = "Min count:";
             // 
-            // button1
+            // button_Save
             // 
-            this.button1.Location = new System.Drawing.Point(187, 261);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "SAVE";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_Save.Location = new System.Drawing.Point(187, 261);
+            this.button_Save.Name = "button_Save";
+            this.button_Save.Size = new System.Drawing.Size(75, 23);
+            this.button_Save.TabIndex = 11;
+            this.button_Save.Text = "SAVE";
+            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // button2
+            // buttonDefault
             // 
-            this.button2.Location = new System.Drawing.Point(92, 261);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "DEFAULT";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(152, 25);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 13);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "seconds";
+            this.buttonDefault.Location = new System.Drawing.Point(92, 261);
+            this.buttonDefault.Name = "buttonDefault";
+            this.buttonDefault.Size = new System.Drawing.Size(75, 23);
+            this.buttonDefault.TabIndex = 12;
+            this.buttonDefault.Text = "DEFAULT";
+            this.buttonDefault.UseVisualStyleBackColor = true;
+            this.buttonDefault.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(356, 292);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonDefault);
+            this.Controls.Add(this.button_Save);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
+            this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -302,26 +305,26 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox maxCountWorkerInput;
+        private System.Windows.Forms.TextBox minCountWorkerInput;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox maxPerformanceInput;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox minPerformanceInput;
+        private System.Windows.Forms.TextBox responseTimeInput;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox maxComplexityInput;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox minComplexityInput;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox maxCountTasksInput;
+        private System.Windows.Forms.TextBox minCountTasksInput;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_Save;
+        private System.Windows.Forms.Button buttonDefault;
         private System.Windows.Forms.Label label10;
     }
 }

@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.components = new System.ComponentModel.Container();
+            this.listViewEmployees = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.listViewTasksWorker = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView3 = new System.Windows.Forms.ListView();
@@ -46,24 +47,28 @@
             this.buttonPause = new System.Windows.Forms.Button();
             this.buttonNew = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timerLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listView1
+            // listViewEmployees
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewEmployees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(25, 52);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(318, 336);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewEmployees.FullRowSelect = true;
+            this.listViewEmployees.GridLines = true;
+            this.listViewEmployees.HideSelection = false;
+            this.listViewEmployees.Location = new System.Drawing.Point(25, 52);
+            this.listViewEmployees.MultiSelect = false;
+            this.listViewEmployees.Name = "listViewEmployees";
+            this.listViewEmployees.Size = new System.Drawing.Size(318, 336);
+            this.listViewEmployees.TabIndex = 0;
+            this.listViewEmployees.UseCompatibleStateImageBehavior = false;
+            this.listViewEmployees.View = System.Windows.Forms.View.Details;
+            this.listViewEmployees.SelectedIndexChanged += new System.EventHandler(this.listViewEmployees_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -88,20 +93,20 @@
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader4.Width = 80;
             // 
-            // listView2
+            // listViewTasksWorker
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewTasksWorker.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader5,
             this.columnHeader6});
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(394, 52);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(318, 336);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
+            this.listViewTasksWorker.FullRowSelect = true;
+            this.listViewTasksWorker.GridLines = true;
+            this.listViewTasksWorker.HideSelection = false;
+            this.listViewTasksWorker.Location = new System.Drawing.Point(394, 52);
+            this.listViewTasksWorker.Name = "listViewTasksWorker";
+            this.listViewTasksWorker.Size = new System.Drawing.Size(318, 336);
+            this.listViewTasksWorker.TabIndex = 1;
+            this.listViewTasksWorker.UseCompatibleStateImageBehavior = false;
+            this.listViewTasksWorker.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader5
             // 
@@ -203,11 +208,26 @@
             this.buttonSettings.UseVisualStyleBackColor = true;
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timerLabel
+            // 
+            this.timerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.timerLabel.Location = new System.Drawing.Point(545, 417);
+            this.timerLabel.Name = "timerLabel";
+            this.timerLabel.Size = new System.Drawing.Size(30, 18);
+            this.timerLabel.TabIndex = 9;
+            this.timerLabel.Text = "00";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1108, 524);
+            this.Controls.Add(this.timerLabel);
             this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonNew);
             this.Controls.Add(this.buttonPause);
@@ -215,8 +235,8 @@
             this.Controls.Add(this.tasks_one_worker);
             this.Controls.Add(this.Employees);
             this.Controls.Add(this.listView3);
-            this.Controls.Add(this.listView2);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewTasksWorker);
+            this.Controls.Add(this.listViewEmployees);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Round-Robin";
@@ -227,8 +247,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView listViewEmployees;
+        private System.Windows.Forms.ListView listViewTasksWorker;
         private System.Windows.Forms.ListView listView3;
         private System.Windows.Forms.Label Employees;
         private System.Windows.Forms.Label tasks_one_worker;
@@ -245,6 +265,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label timerLabel;
     }
 }
 

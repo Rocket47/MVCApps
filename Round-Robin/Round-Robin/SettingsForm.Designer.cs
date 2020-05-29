@@ -305,26 +305,26 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox maxCountWorkerInput;
-        private System.Windows.Forms.TextBox minCountWorkerInput;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox maxPerformanceInput;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox minPerformanceInput;
-        private System.Windows.Forms.TextBox responseTimeInput;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox maxComplexityInput;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox minComplexityInput;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox maxCountTasksInput;
-        private System.Windows.Forms.TextBox minCountTasksInput;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button_Save;
         private System.Windows.Forms.Button buttonDefault;
         private System.Windows.Forms.Label label10;
+        public System.Windows.Forms.TextBox maxCountWorkerInput;
+        public System.Windows.Forms.TextBox minCountWorkerInput;
+        public System.Windows.Forms.TextBox maxPerformanceInput;
+        public System.Windows.Forms.TextBox minPerformanceInput;
+        public System.Windows.Forms.TextBox responseTimeInput;
+        public System.Windows.Forms.TextBox maxComplexityInput;
+        public System.Windows.Forms.TextBox minComplexityInput;
+        public System.Windows.Forms.TextBox maxCountTasksInput;
+        public System.Windows.Forms.TextBox minCountTasksInput;
     }
 }

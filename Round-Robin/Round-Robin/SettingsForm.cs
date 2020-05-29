@@ -65,6 +65,7 @@ namespace Round_Robin
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            //TODO Добавить уведломление что настройки успешно сохранены
             Properties.Settings.Default.saveResponseTime = Convert.ToInt32(this.responseTimeInput.Text);
             Properties.Settings.Default.saveMinCountWorkers = Convert.ToInt32(this.minCountWorkerInput.Text);
             Properties.Settings.Default.saveMaxCountWorkers = Convert.ToInt32(this.maxCountWorkerInput.Text);

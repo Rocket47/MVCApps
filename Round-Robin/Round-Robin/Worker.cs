@@ -19,7 +19,8 @@ namespace Round_Robin
             this.Performance = Performance;
         }
 
-        private void AddTaskToContainer(Task task)
+        //@/////////////////////////////////////////////////////////////////////////////////////
+        public void AddTaskToContainer(Task task)
         {
             containerTasks = new List<Task>();
             containerTasks.Add(task);

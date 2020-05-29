@@ -12,10 +12,10 @@ namespace Round_Robin
         public string Name { get; set; }
         public int Complexity { get; set; }
 
-        public Task (string Name, int Complexity)
+        public Task(string Name, int Complexity)
         {
             this.Name = Name;
             this.Complexity = Complexity;
-        }
+        }        
     }
 }

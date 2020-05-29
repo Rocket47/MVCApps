@@ -17,12 +17,12 @@ namespace Round_Robin
         {
             this.Name = Name;
             this.Performance = Performance;
+            containerTasks = new List<Task>();
         }
 
         //@/////////////////////////////////////////////////////////////////////////////////////
         public void AddTaskToContainer(Task task)
-        {
-            containerTasks = new List<Task>();
+        {            
             containerTasks.Add(task);
         }
     }

@@ -13,10 +13,10 @@ using System.Windows.Forms;
 namespace Round_Robin
 {
     public partial class MainForm : Form
-    {        
-        GeneratorNamesValues generatorNamesValues = new GeneratorNamesValues();
+    {
+        Generator generator = new Generator();
         List<Worker> listWorkers = new List<Worker>();
-        int _ticks = 0;        
+        int _ticks = 0;
         public MainForm()
         {
             InitializeComponent();
@@ -36,50 +36,27 @@ namespace Round_Robin
         {
             timer1.Start();
             //TODO 2х нажатие обработать
-            fillListWorkers();
+            RoundRobin();
             for (int i = 0; i < listWorkers.Count; i++)
             {
-                var rowWorkers = new string[] { listWorkers[i].Name, listWorkers[i].Performance.ToString() };                
-                var lvi = new ListViewItem(rowWorkers);                                
+                var rowWorkers = new string[] { listWorkers[i].Name, listWorkers[i].Performance.ToString() };
+                var lvi = new ListViewItem(rowWorkers);
                 lvi.Tag = listWorkers[i];
                 listViewEmployees.Items.Add(lvi);
-                listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Name.ToString());               
-                listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Complexity.ToString());               
-            }            
-        }
-
-        //@/////////////////////////////////////////////////////////////////////////////////////
-        private void fillListWorkers()
-        {
-            //TODO Надо заменить настройки на текущие. Сейчас не верно! Берется всегда дефолт!            
-            int minCountWorkers = Properties.Settings.Default.MinCounWorkers;
-            int maxCountWorkers = Properties.Settings.Default.MaxCountWorkers;
-            int randomCountWorkers;
-            Random random = new Random();
-            randomCountWorkers = random.Next(minCountWorkers, maxCountWorkers);
-            for (int i = 0; i < randomCountWorkers; i++)
-            {
-                string name = generatorNamesValues.GenerateNameWorker();             
-                int performance = generatorNamesValues.GeneratePerformanceWorker();
-                Worker worker = new Worker(name, performance);
-                string nameTask = generatorNamesValues.GenerateNameTask();
-                int complexity = generatorNamesValues.GenerateTaskComplexity();
-                worker.AddTaskToContainer(new Task(nameTask, complexity));
-                listWorkers.Add(worker);
-                Thread.Sleep(50);
-                //TODO В идеале заменить на многопоточность                
+                listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Name.ToString());
+                listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Complexity.ToString());
             }
-        }
+        }        
 
         //@/////////////////////////////////////////////////////////////////////////////////////
         private void timer1_Tick(object sender, EventArgs e)
-        {            
+        {
             _ticks--;
             if (_ticks == 0)
             {
                 timer1.Stop();
             }
-            this.timerLabel.Text = _ticks.ToString(); 
+            this.timerLabel.Text = _ticks.ToString();
 
         }
 
@@ -87,7 +64,8 @@ namespace Round_Robin
         private void listViewEmployees_SelectedIndexChanged(object sender, EventArgs e)
         {
             listViewTasksWorker.Items.Clear();
-            try {
+            try
+            {
                 var SelectedItem = (Worker)listViewEmployees.SelectedItems[0].Tag;
                 if (SelectedItem != null)
                 {
@@ -96,13 +74,49 @@ namespace Round_Robin
                         var row = new string[] { task.Name, task.Complexity.ToString() };
                         var lvi = new ListViewItem(row);
                         listViewTasksWorker.Items.Add(lvi);
-                    }                        
+                    }
                 }
             }
             catch (Exception ex)
             {
 
-            }      
+            }
         }
+
+        //@/////////////////////////////////////////////////////////////////////////////////////
+        private void RoundRobin()
+        {
+            int indexWorker = 0;           
+            listWorkers = generator.GenerateAllWorkers();
+            int countWorkers = listWorkers.Count;
+            List<Task> listTasks = generator.GenerateAllTasks();           
+            for (int indexTasks = 0; indexTasks < listTasks.Count; indexTasks++)
+            {
+                if (indexWorker >= countWorkers)
+                {
+                    indexWorker = 0;
+                }
+                listWorkers[indexWorker].AddTaskToContainer(listTasks[indexTasks]);
+                indexWorker++;
+            }
+        }
+
+        //@/////////////////////////////////////////////////////////////////////////////////////
+        private void RedistributionTask()
+        {
+            int listWorkersCount = listWorkers.Count;
+            for (int i = 0; i < listWorkersCount; i++)
+            {
+                int indexNextTask = i + 1;
+                if (indexNextTask == listWorkersCount)
+                {
+                    listWorkers[0].containerTasks.Add(listWorkers[i].containerTasks[0]);
+                    listWorkers[i].containerTasks.RemoveAt(0);
+                    return;
+                }
+                listWorkers[indexNextTask].containerTasks.Add(listWorkers[i].containerTasks[0]);
+                listWorkers[i].containerTasks.RemoveAt(0);
+            }
+        }      
     }
 }

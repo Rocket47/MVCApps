@@ -46,7 +46,25 @@ namespace Round_Robin
                 listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Name.ToString());
                 listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Complexity.ToString());
             }
-        }        
+        }
+
+        //@/////////////////////////////////////////////////////////////////////////////////////
+        private void UpdteLVWorkersTmrTick()
+        {
+            listViewEmployees.BeginUpdate();
+            try
+            {
+                for (int i = 0; i < listWorkers.Count; i++)
+                {
+                    listViewEmployees.Items[i].SubItems[2].Text = listWorkers[i].containerTasks[0].Name;
+                    listViewEmployees.Items[i].SubItems[3].Text = listWorkers[i].containerTasks[0].Complexity.ToString();
+                }
+            }
+            finally
+            {
+                listViewEmployees.EndUpdate();
+            }
+        }
 
         //@/////////////////////////////////////////////////////////////////////////////////////
         private void timer1_Tick(object sender, EventArgs e)
@@ -54,10 +72,13 @@ namespace Round_Robin
             _ticks--;
             if (_ticks == 0)
             {
+                this.timerLabel.Text = _ticks.ToString();
                 timer1.Stop();
+                CountTaskAfterTimeTick();
+                UpdteLVWorkersTmrTick();
+                return;
             }
-            this.timerLabel.Text = _ticks.ToString();
-
+            this.timerLabel.Text = _ticks.ToString();            
         }
 
         //@/////////////////////////////////////////////////////////////////////////////////////
@@ -86,10 +107,10 @@ namespace Round_Robin
         //@/////////////////////////////////////////////////////////////////////////////////////
         private void RoundRobin()
         {
-            int indexWorker = 0;           
+            int indexWorker = 0;
             listWorkers = generator.GenerateAllWorkers();
             int countWorkers = listWorkers.Count;
-            List<Task> listTasks = generator.GenerateAllTasks();           
+            List<Task> listTasks = generator.GenerateAllTasks();
             for (int indexTasks = 0; indexTasks < listTasks.Count; indexTasks++)
             {
                 if (indexWorker >= countWorkers)
@@ -110,13 +131,55 @@ namespace Round_Robin
                 int indexNextTask = i + 1;
                 if (indexNextTask == listWorkersCount)
                 {
-                    listWorkers[0].containerTasks.Add(listWorkers[i].containerTasks[0]);
-                    listWorkers[i].containerTasks.RemoveAt(0);
+                    listWorkers[0].containerTasks.Insert(0, listWorkers[i].containerTasks[1]);
+                    listWorkers[i].containerTasks.RemoveAt(1);
                     return;
                 }
-                listWorkers[indexNextTask].containerTasks.Add(listWorkers[i].containerTasks[0]);
-                listWorkers[i].containerTasks.RemoveAt(0);
+                if (indexNextTask == 1)
+                {
+                    listWorkers[indexNextTask].containerTasks.Insert(0, listWorkers[i].containerTasks[0]);
+                    listWorkers[i].containerTasks.RemoveAt(0);
+                }
+                else
+                {
+                    listWorkers[indexNextTask].containerTasks.Insert(0, listWorkers[i].containerTasks[1]);
+                    listWorkers[i].containerTasks.RemoveAt(1);
+                }               
             }
-        }      
+        }
+
+        //@/////////////////////////////////////////////////////////////////////////////////////
+        private void CountTaskAfterTimeTick()
+        {
+            Random random = new Random();           
+            foreach (Worker worker in listWorkers)
+            {
+                int result = worker.containerTasks[0].Complexity - worker.Performance;
+                if (result <= 0)
+                {
+                    worker.containerTasks.RemoveAt(0);
+                }
+            }
+            int probability = random.Next(0, 2);
+            if (probability == 0)
+            {
+                RedistributionTask();               
+            }            
+        }
+
+        //@/////////////////////////////////////////////////////////////////////////////////////
+        private void buttonPause_Click(object sender, EventArgs e)
+        {            
+            if (buttonPause.Text.Equals("CONTINUE"))
+            {
+                timer1.Start();
+                buttonPause.Text = "PAUSE";
+            }
+            else
+            {
+                timer1.Stop();
+                buttonPause.Text = "CONTINUE";
+            }            
+        }
     }
 }

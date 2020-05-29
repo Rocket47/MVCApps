@@ -49,6 +49,7 @@
             this.buttonSettings = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewEmployees
@@ -181,16 +182,17 @@
             // 
             // buttonPause
             // 
-            this.buttonPause.Location = new System.Drawing.Point(520, 469);
+            this.buttonPause.Location = new System.Drawing.Point(520, 446);
             this.buttonPause.Name = "buttonPause";
             this.buttonPause.Size = new System.Drawing.Size(75, 23);
             this.buttonPause.TabIndex = 6;
             this.buttonPause.Text = "PAUSE";
             this.buttonPause.UseVisualStyleBackColor = true;
+            this.buttonPause.Click += new System.EventHandler(this.buttonPause_Click);
             // 
             // buttonNew
             // 
-            this.buttonNew.Location = new System.Drawing.Point(601, 469);
+            this.buttonNew.Location = new System.Drawing.Point(601, 446);
             this.buttonNew.Name = "buttonNew";
             this.buttonNew.Size = new System.Drawing.Size(75, 23);
             this.buttonNew.TabIndex = 7;
@@ -200,7 +202,7 @@
             // 
             // buttonSettings
             // 
-            this.buttonSettings.Location = new System.Drawing.Point(439, 469);
+            this.buttonSettings.Location = new System.Drawing.Point(439, 446);
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.Size = new System.Drawing.Size(75, 23);
             this.buttonSettings.TabIndex = 8;
@@ -216,17 +218,27 @@
             // timerLabel
             // 
             this.timerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.timerLabel.Location = new System.Drawing.Point(545, 417);
+            this.timerLabel.Location = new System.Drawing.Point(544, 408);
             this.timerLabel.Name = "timerLabel";
             this.timerLabel.Size = new System.Drawing.Size(30, 18);
             this.timerLabel.TabIndex = 9;
             this.timerLabel.Text = "00";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(712, 446);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Test";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1108, 524);
+            this.ClientSize = new System.Drawing.Size(1108, 480);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.timerLabel);
             this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonNew);
@@ -267,6 +279,7 @@
         private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label timerLabel;
+        private System.Windows.Forms.Button button1;
     }
 }
 

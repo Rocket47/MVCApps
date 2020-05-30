@@ -37,7 +37,7 @@
             this.listViewTasksWorker = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView3 = new System.Windows.Forms.ListView();
+            this.listViewProcessWork = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -120,21 +120,21 @@
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader6.Width = 160;
             // 
-            // listView3
+            // listViewProcessWork
             // 
-            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewProcessWork.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader9});
-            this.listView3.FullRowSelect = true;
-            this.listView3.GridLines = true;
-            this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(765, 52);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(318, 336);
-            this.listView3.TabIndex = 2;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            this.listView3.View = System.Windows.Forms.View.Details;
+            this.listViewProcessWork.FullRowSelect = true;
+            this.listViewProcessWork.GridLines = true;
+            this.listViewProcessWork.HideSelection = false;
+            this.listViewProcessWork.Location = new System.Drawing.Point(765, 52);
+            this.listViewProcessWork.Name = "listViewProcessWork";
+            this.listViewProcessWork.Size = new System.Drawing.Size(318, 336);
+            this.listViewProcessWork.TabIndex = 2;
+            this.listViewProcessWork.UseCompatibleStateImageBehavior = false;
+            this.listViewProcessWork.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader7
             // 
@@ -246,7 +246,7 @@
             this.Controls.Add(this.process_work);
             this.Controls.Add(this.tasks_one_worker);
             this.Controls.Add(this.Employees);
-            this.Controls.Add(this.listView3);
+            this.Controls.Add(this.listViewProcessWork);
             this.Controls.Add(this.listViewTasksWorker);
             this.Controls.Add(this.listViewEmployees);
             this.Name = "MainForm";
@@ -261,7 +261,7 @@
 
         private System.Windows.Forms.ListView listViewEmployees;
         private System.Windows.Forms.ListView listViewTasksWorker;
-        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.ListView listViewProcessWork;
         private System.Windows.Forms.Label Employees;
         private System.Windows.Forms.Label tasks_one_worker;
         private System.Windows.Forms.Label process_work;

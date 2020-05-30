@@ -17,6 +17,7 @@ namespace Round_Robin
         Generator generator = new Generator();
         List<Worker> listWorkers = new List<Worker>();
         int _ticks = 0;
+        int _numberCycleModulation = 0;
         public MainForm()
         {
             InitializeComponent();
@@ -34,17 +35,26 @@ namespace Round_Robin
         //@/////////////////////////////////////////////////////////////////////////////////////
         private void buttonNew_Click(object sender, EventArgs e)
         {
-            timer1.Start();
-            //TODO 2х нажатие обработать
-            RoundRobin();
-            for (int i = 0; i < listWorkers.Count; i++)
+            if (_numberCycleModulation == 0)
             {
-                var rowWorkers = new string[] { listWorkers[i].Name, listWorkers[i].Performance.ToString() };
-                var lvi = new ListViewItem(rowWorkers);
-                lvi.Tag = listWorkers[i];
-                listViewEmployees.Items.Add(lvi);
-                listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Name.ToString());
-                listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Complexity.ToString());
+                timer1.Start();
+                //TODO 2х нажатие обработать
+                RoundRobin();
+                for (int i = 0; i < listWorkers.Count; i++)
+                {
+                    var rowWorkers = new string[] { listWorkers[i].Name, listWorkers[i].Performance.ToString() };
+                    var lvi = new ListViewItem(rowWorkers);
+                    lvi.Tag = listWorkers[i];
+                    listViewEmployees.Items.Add(lvi);
+                    listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Name.ToString());
+                    listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Complexity.ToString());
+                }
+            }
+            else
+            {
+                _ticks = Properties.Settings.Default.ResponseTime;
+                timerLabel.Text = _ticks.ToString();
+                timer1.Start();
             }
         }
 
@@ -56,8 +66,17 @@ namespace Round_Robin
             {
                 for (int i = 0; i < listWorkers.Count; i++)
                 {
-                    listViewEmployees.Items[i].SubItems[2].Text = listWorkers[i].containerTasks[0].Name;
-                    listViewEmployees.Items[i].SubItems[3].Text = listWorkers[i].containerTasks[0].Complexity.ToString();
+                    if (listWorkers[i].containerTasks.Count != 0)
+                    {
+                        listViewEmployees.Items[i].SubItems[2].Text = listWorkers[i].containerTasks[0].Name;
+                        listViewEmployees.Items[i].SubItems[3].Text = listWorkers[i].containerTasks[0].Complexity.ToString();                        
+                    }
+
+                    if (listWorkers[i].containerTasks.Count == 0)
+                    {
+                        listViewEmployees.Items[i].SubItems[2].Text = "No tasks";
+                        listViewEmployees.Items[i].SubItems[3].Text = "-";
+                    }
                 }
             }
             finally
@@ -74,6 +93,7 @@ namespace Round_Robin
             {
                 this.timerLabel.Text = _ticks.ToString();
                 timer1.Stop();
+                _numberCycleModulation++;
                 CountTaskAfterTimeTick();
                 UpdteLVWorkersTmrTick();
                 return;
@@ -131,20 +151,48 @@ namespace Round_Robin
                 int indexNextTask = i + 1;
                 if (indexNextTask == listWorkersCount)
                 {
-                    listWorkers[0].containerTasks.Insert(0, listWorkers[i].containerTasks[1]);
-                    listWorkers[i].containerTasks.RemoveAt(1);
+                    if (listWorkers[0].containerTasks.Count == 1)
+                    {
+                        listWorkers[0].containerTasks.Insert(0, listWorkers[i].containerTasks[0]);
+                        listWorkers[i].containerTasks.RemoveAt(0);
+                    }
+                    if (listWorkers[0].containerTasks.Count > 1)
+                    {
+                        if (listWorkers[i].containerTasks.Count == 1)
+                        {
+                            listWorkers[0].containerTasks.Insert(0, listWorkers[i].containerTasks[0]);
+                            listWorkers[i].containerTasks.RemoveAt(0);
+                        }
+                        if (listWorkers[i].containerTasks.Count > 1)
+                        {
+                            listWorkers[0].containerTasks.Insert(0, listWorkers[i].containerTasks[1]);
+                            listWorkers[i].containerTasks.RemoveAt(1);
+                        }
+                    }
+
                     return;
                 }
                 if (indexNextTask == 1)
                 {
-                    listWorkers[indexNextTask].containerTasks.Insert(0, listWorkers[i].containerTasks[0]);
-                    listWorkers[i].containerTasks.RemoveAt(0);
+                    if (listWorkers[i].containerTasks.Count != 0)
+                    {
+                        listWorkers[indexNextTask].containerTasks.Insert(0, listWorkers[i].containerTasks[0]);
+                        listWorkers[i].containerTasks.RemoveAt(0);
+                    }                   
                 }
                 else
                 {
-                    listWorkers[indexNextTask].containerTasks.Insert(0, listWorkers[i].containerTasks[1]);
-                    listWorkers[i].containerTasks.RemoveAt(1);
-                }               
+                    if (listWorkers[i].containerTasks.Count == 1)
+                    {
+                        listWorkers[indexNextTask].containerTasks.Insert(0, listWorkers[i].containerTasks[0]);
+                        listWorkers[i].containerTasks.RemoveAt(0);
+                    }
+                    if (listWorkers[i].containerTasks.Count > 1)
+                    {
+                        listWorkers[indexNextTask].containerTasks.Insert(0, listWorkers[i].containerTasks[1]);
+                        listWorkers[i].containerTasks.RemoveAt(1);
+                    }
+                }
             }
         }
 
@@ -154,10 +202,22 @@ namespace Round_Robin
             Random random = new Random();           
             foreach (Worker worker in listWorkers)
             {
-                int result = worker.containerTasks[0].Complexity - worker.Performance;
-                if (result <= 0)
+                if (worker.containerTasks.Count >= 1)
                 {
-                    worker.containerTasks.RemoveAt(0);
+                    int result = worker.containerTasks[0].Complexity - worker.Performance;
+                    if (result <= 0)
+                    {
+                        fillProcessWorkListView(worker, worker.containerTasks[0], _numberCycleModulation);
+                        worker.containerTasks.RemoveAt(0);
+                    }
+                    else
+                    {
+                        worker.containerTasks[0].Complexity = result;
+                    }
+                }
+                else
+                {
+                    continue;
                 }
             }
             int probability = random.Next(0, 2);
@@ -181,5 +241,14 @@ namespace Round_Robin
                 buttonPause.Text = "CONTINUE";
             }            
         }
+
+        //@/////////////////////////////////////////////////////////////////////////////////////
+        private void fillProcessWorkListView(Worker workerFinished, Task completedTask, int numberCycleModulation)
+        {
+            string[] item = new string[] { workerFinished.Name, completedTask.Name, numberCycleModulation.ToString() };
+            ListViewItem lvItem = new ListViewItem(item);
+            listViewProcessWork.Items.Add(lvItem);
+        }
     }
 }
+

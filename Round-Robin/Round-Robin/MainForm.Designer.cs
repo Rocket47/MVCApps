@@ -49,6 +49,7 @@
             this.buttonSettings = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerLabel = new System.Windows.Forms.Label();
+            this.TaskDistribution = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listViewEmployees
@@ -223,11 +224,20 @@
             this.timerLabel.TabIndex = 9;
             this.timerLabel.Text = "00";
             // 
+            // TaskDistribution
+            // 
+            this.TaskDistribution.AutoSize = true;
+            this.TaskDistribution.Location = new System.Drawing.Point(691, 451);
+            this.TaskDistribution.Name = "TaskDistribution";
+            this.TaskDistribution.Size = new System.Drawing.Size(0, 13);
+            this.TaskDistribution.TabIndex = 10;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1108, 480);
+            this.Controls.Add(this.TaskDistribution);
             this.Controls.Add(this.timerLabel);
             this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonNew);
@@ -268,6 +278,7 @@
         private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label timerLabel;
+        private System.Windows.Forms.Label TaskDistribution;
     }
 }
 

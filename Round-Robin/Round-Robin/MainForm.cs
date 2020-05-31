@@ -23,6 +23,7 @@ namespace Round_Robin
             InitializeComponent();
             _ticks = Properties.Settings.Default.currentResponseTime;
             this.timerLabel.Text = Properties.Settings.Default.currentResponseTime.ToString();
+            buttonPause.Enabled = false;
         }
 
         //@/////////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +35,9 @@ namespace Round_Robin
 
         //@/////////////////////////////////////////////////////////////////////////////////////
         private void buttonNew_Click(object sender, EventArgs e)
-        {            
+        {
+            buttonPause.Enabled = true;
+            this.TaskDistribution.Text = "";
             if (_numberCycleModulation == 0)
             {
                 _ticks = Properties.Settings.Default.currentResponseTime;
@@ -147,12 +150,23 @@ namespace Round_Robin
         //@/////////////////////////////////////////////////////////////////////////////////////
         private void RedistributionTask()
         {
+            bool statusEmpty = false;
+            this.TaskDistribution.Text = "Redistribution!";
             int listWorkersCount = listWorkers.Count;
             for (int i = 0; i < listWorkersCount; i++)
             {
+                if (statusEmpty)
+                {
+                    statusEmpty = false;
+                    continue;
+                }
                 int indexNextTask = i + 1;
                 if (indexNextTask == listWorkersCount)
                 {
+                    if (listWorkers[i].containerTasks.Count == 0)
+                    {
+                        return;
+                    }
                     if (listWorkers[0].containerTasks.Count == 1)
                     {
                         listWorkers[0].containerTasks.Insert(0, listWorkers[i].containerTasks[0]);
@@ -174,8 +188,12 @@ namespace Round_Robin
 
                     return;
                 }
-                if (indexNextTask == 1)
+                if (listWorkers[i].containerTasks.Count == 0)
                 {
+                    continue;
+                }
+                if (indexNextTask == 1)
+                {                                
                     if (listWorkers[i].containerTasks.Count != 0)
                     {
                         listWorkers[indexNextTask].containerTasks.Insert(0, listWorkers[i].containerTasks[0]);
@@ -184,6 +202,10 @@ namespace Round_Robin
                 }
                 else
                 {
+                    if (listWorkers[indexNextTask].containerTasks.Count == 0)
+                    {
+                        statusEmpty = true;
+                    }
                     if (listWorkers[i].containerTasks.Count == 1)
                     {
                         listWorkers[indexNextTask].containerTasks.Insert(0, listWorkers[i].containerTasks[0]);
@@ -234,22 +256,32 @@ namespace Round_Robin
         {            
             if (buttonPause.Text.Equals("CONTINUE"))
             {
+                buttonNew.Enabled = true;
                 timer1.Start();
                 buttonPause.Text = "PAUSE";
             }
             else
             {
                 timer1.Stop();
-                buttonPause.Text = "CONTINUE";
+                buttonNew.Enabled = false;
+                buttonPause.Text = "CONTINUE";               
             }            
         }
 
         //@/////////////////////////////////////////////////////////////////////////////////////
         private void fillProcessWorkListView(Worker workerFinished, Task completedTask, int numberCycleModulation)
-        {
-            string[] item = new string[] { workerFinished.Name, completedTask.Name, numberCycleModulation.ToString() };
-            ListViewItem lvItem = new ListViewItem(item);
-            listViewProcessWork.Items.Add(lvItem);
+        {            
+            listViewProcessWork.BeginUpdate();
+            try
+            {
+                string[] item = new string[] { workerFinished.Name, completedTask.Name, numberCycleModulation.ToString() };
+                ListViewItem lvItem = new ListViewItem(item);
+                listViewProcessWork.Items.Add(lvItem);
+            }
+            finally
+            {
+                listViewProcessWork.EndUpdate();
+            }
         }
     }
 }

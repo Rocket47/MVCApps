@@ -22,7 +22,7 @@ namespace Round_Robin
             string Name = "";
             Name += consonants[r.Next(consonants.Length)].ToUpper();
             Name += vowels[r.Next(vowels.Length)];
-            int timeLetterAdded = 2; 
+            int timeLetterAdded = 2;
             while (timeLetterAdded < len)
             {
                 Name += consonants[r.Next(consonants.Length)];
@@ -92,7 +92,7 @@ namespace Round_Robin
                 string name = GenerateNameWorker();
                 int performance = GeneratePerformanceWorker();
                 Worker worker = new Worker(name, performance);
-                Thread.Sleep(50);
+                Thread.Sleep(40);
                 resultListWorkers.Add(worker);
             }
             return resultListWorkers;

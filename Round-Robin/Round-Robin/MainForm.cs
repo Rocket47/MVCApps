@@ -24,6 +24,14 @@ namespace Round_Robin
             _ticks = Properties.Settings.Default.currentResponseTime;
             this.timerLabel.Text = Properties.Settings.Default.currentResponseTime.ToString();
             buttonPause.Enabled = false;
+            listViewEmployees
+               .GetType()
+               .GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+               .SetValue(listViewEmployees, true, null);
+            listViewProcessWork
+                .GetType()
+                .GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                .SetValue(listViewProcessWork, true, null);
         }
 
         //@/////////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +59,10 @@ namespace Round_Robin
                     var lvi = new ListViewItem(rowWorkers);
                     lvi.Tag = listWorkers[i];
                     listViewEmployees.Items.Add(lvi);
+                    if (listWorkers[i].containerTasks.Count == 0)
+                    {
+                        continue;
+                    }
                     listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Name.ToString());
                     listViewEmployees.Items[i].SubItems.Add(listWorkers[i].containerTasks[0].Complexity.ToString());
                 }
@@ -65,7 +77,7 @@ namespace Round_Robin
 
         //@/////////////////////////////////////////////////////////////////////////////////////
         private void UpdteLVWorkersTmrTick()
-        {
+        {           
             listViewEmployees.BeginUpdate();
             try
             {
@@ -73,14 +85,22 @@ namespace Round_Robin
                 {
                     if (listWorkers[i].containerTasks.Count != 0)
                     {
-                        listViewEmployees.Items[i].SubItems[2].Text = listWorkers[i].containerTasks[0].Name;
-                        listViewEmployees.Items[i].SubItems[3].Text = listWorkers[i].containerTasks[0].Complexity.ToString();                        
+                        try
+                        {
+                            listViewEmployees.Items[i].SubItems[2].Text = listWorkers[i].containerTasks[0].Name;
+                            listViewEmployees.Items[i].SubItems[3].Text = listWorkers[i].containerTasks[0].Complexity.ToString();
+                        }
+                        catch (ArgumentOutOfRangeException ex) { }                                                                        
                     }
 
                     if (listWorkers[i].containerTasks.Count == 0)
                     {
-                        listViewEmployees.Items[i].SubItems[2].Text = "No tasks";
-                        listViewEmployees.Items[i].SubItems[3].Text = "-";
+                        try
+                        {
+                            listViewEmployees.Items[i].SubItems[2].Text = "No tasks";
+                            listViewEmployees.Items[i].SubItems[3].Text = "-";
+                        }
+                        catch (ArgumentOutOfRangeException ex) { }                                             
                     }
                 }
             }

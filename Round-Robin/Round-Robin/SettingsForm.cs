@@ -19,6 +19,7 @@ namespace Round_Robin
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
+            labelSave.Text = "";
             if (Properties.Settings.Default.isFormSettingsLoadFirstTime)
             {
                 GoToDefaultSettings();                
@@ -34,6 +35,7 @@ namespace Round_Robin
 
         private void GoToDefaultSettings()
         {
+            labelSave.Text = "DEFAULT!";
             this.responseTimeInput.Text = Properties.Settings.Default.ResponseTime.ToString();
             this.minCountWorkerInput.Text = Properties.Settings.Default.MinCountWorkers.ToString();
             this.maxCountWorkerInput.Text = Properties.Settings.Default.MaxCountWorkers.ToString();
@@ -83,6 +85,26 @@ namespace Round_Robin
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            if (Convert.ToInt32(this.minCountWorkerInput.Text) > Convert.ToInt32(this.maxCountWorkerInput.Text))
+            {
+                MessageBox.Show("minCount(Performers) should be less than maxCount(Performers)");
+                return;
+            }
+            if (Convert.ToInt32(this.minPerformanceInput.Text) > Convert.ToInt32(this.maxPerformanceInput.Text))
+            {
+                MessageBox.Show("minPerformance should be less than maxPerformance");
+                return;
+            }
+            if (Convert.ToInt32(this.minCountTasksInput.Text) > Convert.ToInt32(this.maxCountTasksInput.Text))
+            {
+                MessageBox.Show("maxCount(Tasks) should be less maxCount(Tasks)");
+                return;
+            }
+            if (Convert.ToInt32(this.minComplexityInput.Text) > Convert.ToInt32(this.maxComplexityInput.Text))
+            {
+                MessageBox.Show("minComplexity should be less maxComplexity");
+                return;
+            }
             //TODO Добавить уведломление что настройки успешно сохранены
             Properties.Settings.Default.saveResponseTime = Convert.ToInt32(this.responseTimeInput.Text);
             Properties.Settings.Default.saveMinCountWorkers = Convert.ToInt32(this.minCountWorkerInput.Text);
@@ -103,6 +125,7 @@ namespace Round_Robin
             Properties.Settings.Default.currentMinComplexity = Properties.Settings.Default.saveMinComplexity;
             Properties.Settings.Default.currentMaxComplexity = Properties.Settings.Default.saveMaxComplexity;
             Properties.Settings.Default.isFormSettingsLoadFirstTime = false;
+            labelSave.Text = "SAVED!";
 
         }
     }

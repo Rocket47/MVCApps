@@ -52,6 +52,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button_Save = new System.Windows.Forms.Button();
             this.buttonDefault = new System.Windows.Forms.Button();
+            this.labelSave = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -276,11 +277,20 @@
             this.buttonDefault.UseVisualStyleBackColor = true;
             this.buttonDefault.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
+            // labelSave
+            // 
+            this.labelSave.AutoSize = true;
+            this.labelSave.Location = new System.Drawing.Point(281, 266);
+            this.labelSave.Name = "labelSave";
+            this.labelSave.Size = new System.Drawing.Size(0, 13);
+            this.labelSave.TabIndex = 13;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(356, 292);
+            this.Controls.Add(this.labelSave);
             this.Controls.Add(this.buttonDefault);
             this.Controls.Add(this.button_Save);
             this.Controls.Add(this.groupBox3);
@@ -297,6 +307,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -326,5 +337,6 @@
         public System.Windows.Forms.TextBox minComplexityInput;
         public System.Windows.Forms.TextBox maxCountTasksInput;
         public System.Windows.Forms.TextBox minCountTasksInput;
+        private System.Windows.Forms.Label labelSave;
     }
 }

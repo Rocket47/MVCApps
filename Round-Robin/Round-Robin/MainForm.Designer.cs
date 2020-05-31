@@ -50,6 +50,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerLabel = new System.Windows.Forms.Label();
             this.TaskDistribution = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listViewEmployees
@@ -232,11 +233,21 @@
             this.TaskDistribution.Size = new System.Drawing.Size(0, 13);
             this.TaskDistribution.TabIndex = 10;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(569, 412);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "seconds";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1108, 480);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.TaskDistribution);
             this.Controls.Add(this.timerLabel);
             this.Controls.Add(this.buttonSettings);
@@ -279,6 +290,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label timerLabel;
         private System.Windows.Forms.Label TaskDistribution;
+        private System.Windows.Forms.Label label1;
     }
 }
 

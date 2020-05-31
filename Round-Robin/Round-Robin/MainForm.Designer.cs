@@ -49,7 +49,6 @@
             this.buttonSettings = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timerLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewEmployees
@@ -224,21 +223,11 @@
             this.timerLabel.TabIndex = 9;
             this.timerLabel.Text = "00";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(712, 446);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Test";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1108, 480);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.timerLabel);
             this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonNew);
@@ -279,7 +268,6 @@
         private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label timerLabel;
-        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -22,13 +22,13 @@ namespace Round_Robin
             string Name = "";
             Name += consonants[r.Next(consonants.Length)].ToUpper();
             Name += vowels[r.Next(vowels.Length)];
-            int b = 2; //b tells how many times a new letter has been added. It's 2 right now because the first two letters are already in the name.
-            while (b < len)
+            int timeLetterAdded = 2; 
+            while (timeLetterAdded < len)
             {
                 Name += consonants[r.Next(consonants.Length)];
-                b++;
+                timeLetterAdded++;
                 Name += vowels[r.Next(vowels.Length)];
-                b++;
+                timeLetterAdded++;
             }
             return Name;
         }
@@ -36,8 +36,8 @@ namespace Round_Robin
         //@/////////////////////////////////////////////////////////////////////////////////////
         public int GeneratePerformanceWorker()
         {
-            int minValue = Convert.ToInt32(Properties.Settings.Default.MinPerformance);
-            int maxValue = Convert.ToInt32(Properties.Settings.Default.MaxPerformance) + 1;
+            int minValue = Convert.ToInt32(Properties.Settings.Default.currentMinPerformance);
+            int maxValue = Convert.ToInt32(Properties.Settings.Default.currentMaxPerformance) + 1;
             Random r = new Random();
             int performance = r.Next(minValue, maxValue);
             return performance;
@@ -54,8 +54,8 @@ namespace Round_Robin
         //@/////////////////////////////////////////////////////////////////////////////////////
         public int GenerateTaskComplexity()
         {
-            int minValue = Convert.ToInt32(Properties.Settings.Default.MinComplexity);
-            int maxValue = Convert.ToInt32(Properties.Settings.Default.MaxComplexity) + 1;
+            int minValue = Convert.ToInt32(Properties.Settings.Default.currentMinComplexity);
+            int maxValue = Convert.ToInt32(Properties.Settings.Default.currentMaxComplexity) + 1;
             Random r = new Random();
             int complexity = r.Next(minValue, maxValue);
             return complexity; ;
@@ -65,8 +65,8 @@ namespace Round_Robin
         public List<Task> GenerateAllTasks()
         {
             List<Task> resultListTasks = new List<Task>();
-            int minValue = Convert.ToInt32(Properties.Settings.Default.MinCountTasks);
-            int maxValue = Convert.ToInt32(Properties.Settings.Default.MaxCountTasks);
+            int minValue = Convert.ToInt32(Properties.Settings.Default.currentMinCountTasks);
+            int maxValue = Convert.ToInt32(Properties.Settings.Default.currentMaxCountTasks);
             Random r = new Random();
             int countTasks = r.Next(minValue, maxValue);
             for (int i = 0; i < countTasks; i++)
@@ -82,8 +82,8 @@ namespace Round_Robin
         {
             //TODO В идеале заменить на многопоточность  
             List<Worker> resultListWorkers = new List<Worker>();
-            int minCountWorkers = Properties.Settings.Default.MinCounWorkers;
-            int maxCountWorkers = Properties.Settings.Default.MaxCountWorkers;
+            int minCountWorkers = Properties.Settings.Default.currentMinCountWorkers;
+            int maxCountWorkers = Properties.Settings.Default.currentMaxCountWorkers;
             int randomCountWorkers;
             Random random = new Random();
             randomCountWorkers = random.Next(minCountWorkers, maxCountWorkers);

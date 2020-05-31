@@ -35,7 +35,7 @@ namespace Round_Robin
         private void GoToDefaultSettings()
         {
             this.responseTimeInput.Text = Properties.Settings.Default.ResponseTime.ToString();
-            this.minCountWorkerInput.Text = Properties.Settings.Default.MinCounWorkers.ToString();
+            this.minCountWorkerInput.Text = Properties.Settings.Default.MinCountWorkers.ToString();
             this.maxCountWorkerInput.Text = Properties.Settings.Default.MaxCountWorkers.ToString();
             this.minPerformanceInput.Text = Properties.Settings.Default.MinPerformance.ToString();
             this.maxPerformanceInput.Text = Properties.Settings.Default.MaxPerformance.ToString();
@@ -43,6 +43,15 @@ namespace Round_Robin
             this.maxCountTasksInput.Text = Properties.Settings.Default.MaxCountTasks.ToString();
             this.minComplexityInput.Text = Properties.Settings.Default.MinComplexity.ToString();
             this.maxComplexityInput.Text = Properties.Settings.Default.MaxComplexity.ToString();
+            Properties.Settings.Default.currentResponseTime = Properties.Settings.Default.ResponseTime;
+            Properties.Settings.Default.currentMinCountWorkers = Properties.Settings.Default.MinCountWorkers;
+            Properties.Settings.Default.currentMaxCountWorkers = Properties.Settings.Default.MaxCountWorkers;
+            Properties.Settings.Default.currentMinPerformance = Properties.Settings.Default.MinPerformance;
+            Properties.Settings.Default.currentMaxPerformance = Properties.Settings.Default.MaxPerformance;
+            Properties.Settings.Default.currentMinCountTasks = Properties.Settings.Default.MinCountTasks;
+            Properties.Settings.Default.currentMaxCountTasks = Properties.Settings.Default.MaxCountTasks;
+            Properties.Settings.Default.currentMinComplexity = Properties.Settings.Default.MinComplexity;
+            Properties.Settings.Default.currentMaxComplexity = Properties.Settings.Default.MaxComplexity;
         }
 
         private void GoToSaveSettings()
@@ -55,7 +64,16 @@ namespace Round_Robin
             this.minCountTasksInput.Text = Properties.Settings.Default.saveMinCountTasks.ToString();
             this.maxCountTasksInput.Text = Properties.Settings.Default.saveMaxCountTasks.ToString();
             this.minComplexityInput.Text = Properties.Settings.Default.saveMinComplexity.ToString();
-            this.maxComplexityInput.Text = Properties.Settings.Default.saveMaxComplexity.ToString();            
+            this.maxComplexityInput.Text = Properties.Settings.Default.saveMaxComplexity.ToString();
+            Properties.Settings.Default.currentResponseTime = Properties.Settings.Default.saveResponseTime;
+            Properties.Settings.Default.currentMinCountWorkers = Properties.Settings.Default.saveMinCountWorkers;
+            Properties.Settings.Default.currentMaxCountWorkers = Properties.Settings.Default.saveMaxCountWorkers;
+            Properties.Settings.Default.currentMinPerformance = Properties.Settings.Default.saveMinPerformance;
+            Properties.Settings.Default.currentMaxPerformance = Properties.Settings.Default.saveMaxPerformance;
+            Properties.Settings.Default.currentMinCountTasks = Properties.Settings.Default.saveMinCountTasks;
+            Properties.Settings.Default.currentMaxCountTasks = Properties.Settings.Default.saveMaxCountTasks;
+            Properties.Settings.Default.currentMinComplexity = Properties.Settings.Default.saveMinComplexity;
+            Properties.Settings.Default.currentMaxComplexity = Properties.Settings.Default.saveMaxComplexity;
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
@@ -75,6 +93,15 @@ namespace Round_Robin
             Properties.Settings.Default.saveMaxCountTasks = Convert.ToInt32(this.maxCountTasksInput.Text);
             Properties.Settings.Default.saveMinComplexity = Convert.ToInt32(this.minComplexityInput.Text);
             Properties.Settings.Default.saveMaxComplexity = Convert.ToInt32(this.maxComplexityInput.Text);
+            Properties.Settings.Default.currentResponseTime = Properties.Settings.Default.saveResponseTime;
+            Properties.Settings.Default.currentMinCountWorkers = Properties.Settings.Default.saveMinCountWorkers;
+            Properties.Settings.Default.currentMaxCountWorkers = Properties.Settings.Default.saveMaxCountWorkers;
+            Properties.Settings.Default.currentMinPerformance = Properties.Settings.Default.saveMinPerformance;
+            Properties.Settings.Default.currentMaxPerformance = Properties.Settings.Default.saveMaxPerformance;
+            Properties.Settings.Default.currentMinCountTasks = Properties.Settings.Default.saveMinCountTasks;
+            Properties.Settings.Default.currentMaxCountTasks = Properties.Settings.Default.saveMaxCountTasks;
+            Properties.Settings.Default.currentMinComplexity = Properties.Settings.Default.saveMinComplexity;
+            Properties.Settings.Default.currentMaxComplexity = Properties.Settings.Default.saveMaxComplexity;
             Properties.Settings.Default.isFormSettingsLoadFirstTime = false;
 
         }

@@ -21,8 +21,8 @@ namespace Round_Robin
         public MainForm()
         {
             InitializeComponent();
-            _ticks = Properties.Settings.Default.ResponseTime;
-            this.timerLabel.Text = Properties.Settings.Default.ResponseTime.ToString();
+            _ticks = Properties.Settings.Default.currentResponseTime;
+            this.timerLabel.Text = Properties.Settings.Default.currentResponseTime.ToString();
         }
 
         //@/////////////////////////////////////////////////////////////////////////////////////
@@ -34,9 +34,11 @@ namespace Round_Robin
 
         //@/////////////////////////////////////////////////////////////////////////////////////
         private void buttonNew_Click(object sender, EventArgs e)
-        {
+        {            
             if (_numberCycleModulation == 0)
             {
+                _ticks = Properties.Settings.Default.currentResponseTime;
+                timerLabel.Text = _ticks.ToString();
                 timer1.Start();
                 //TODO 2х нажатие обработать
                 RoundRobin();
@@ -52,7 +54,7 @@ namespace Round_Robin
             }
             else
             {
-                _ticks = Properties.Settings.Default.ResponseTime;
+                _ticks = Properties.Settings.Default.currentResponseTime;
                 timerLabel.Text = _ticks.ToString();
                 timer1.Start();
             }

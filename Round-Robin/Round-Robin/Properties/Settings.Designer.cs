@@ -38,12 +38,12 @@ namespace Round_Robin.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int MinCounWorkers {
+        public int MinCountWorkers {
             get {
-                return ((int)(this["MinCounWorkers"]));
+                return ((int)(this["MinCountWorkers"]));
             }
             set {
-                this["MinCounWorkers"] = value;
+                this["MinCountWorkers"] = value;
             }
         }
         
@@ -248,6 +248,125 @@ namespace Round_Robin.Properties {
             }
             set {
                 this["saveMaxComplexity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int currentResponseTime {
+            get {
+                return ((int)(this["currentResponseTime"]));
+            }
+            set {
+                this["currentResponseTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int currentMinCountWorkers {
+            get {
+                return ((int)(this["currentMinCountWorkers"]));
+            }
+            set {
+                this["currentMinCountWorkers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int currentMaxCountWorkers {
+            get {
+                return ((int)(this["currentMaxCountWorkers"]));
+            }
+            set {
+                this["currentMaxCountWorkers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int currentMinPerformance {
+            get {
+                return ((int)(this["currentMinPerformance"]));
+            }
+            set {
+                this["currentMinPerformance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int currentMaxPerformance {
+            get {
+                return ((int)(this["currentMaxPerformance"]));
+            }
+            set {
+                this["currentMaxPerformance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public int currentMinCountTasks {
+            get {
+                return ((int)(this["currentMinCountTasks"]));
+            }
+            set {
+                this["currentMinCountTasks"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int currentMaxCountTasks {
+            get {
+                return ((int)(this["currentMaxCountTasks"]));
+            }
+            set {
+                this["currentMaxCountTasks"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int currentMinComplexity {
+            get {
+                return ((int)(this["currentMinComplexity"]));
+            }
+            set {
+                this["currentMinComplexity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int currentMaxComplexity {
+            get {
+                return ((int)(this["currentMaxComplexity"]));
+            }
+            set {
+                this["currentMaxComplexity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public int Setting {
+            get {
+                return ((int)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
             }
         }
     }
